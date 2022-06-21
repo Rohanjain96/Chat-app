@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser")
 const dotenv = require("dotenv")
-dotenv.config("./.env")
+dotenv.config(".env")
 const connection = require("./db/db.js");
 const userrouter = require("./Routes/userroutes")
 const messagerouter = require("./Routes/messageroutes")
@@ -20,14 +20,6 @@ app.use("/api/users", userrouter);
 app.use("/api/chats", chatrouter);
 app.use("/api/messages", messagerouter);
 connection();
-if( process.env.NODE_ENV === 'production'){
-app.use(express.static(path.resolve('client/build')));
-app.use(express.static('public'));
-app.get('*',(req,res)=>{
-    res.sendFile(path.resolve (__dirname,"client","build","index.html"))
-})
-}
-
 
 const server = app.listen(PORT, () => { console.log("listening on port 5000"); })
 const io = require("socket.io")(server, {

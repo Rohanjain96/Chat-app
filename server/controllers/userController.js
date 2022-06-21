@@ -96,7 +96,7 @@ const checkcookie = async (req, res) => {
     let token = req.cookies.jwtoken;
     if (token == undefined)
         return;
-    const decoded = jwt.verify(token, "Mysecretauthdokensecretkey");
+    const decoded = jwt.verify(token, process.env.secret_key);
     data = await User.findById(decoded.userId).select("-password");
     res.json(data);
 }

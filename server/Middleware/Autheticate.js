@@ -10,7 +10,7 @@ const protect = async (req, res, next) => {
     token = req.cookies.jwtoken;
 
       //decodes token id
-      const decoded = jwt.verify(token,"Mysecretauthdokensecretkey" );
+      const decoded = jwt.verify(token,process.env.secret_key);
       req.user = await User.findById(decoded.userId).select("-password");
       next();
     }
