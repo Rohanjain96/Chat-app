@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const url = "https://mern-chatify-app.herokuapp.com/"
 
 const { login, getAllUser, register, checkcookie, removecookie } = require("../controllers/userController.js");
 const { protect } = require("../Middleware/Autheticate.js");

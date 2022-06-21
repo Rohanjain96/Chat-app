@@ -8,7 +8,7 @@ const userrouter = require("./Routes/userroutes")
 const messagerouter = require("./Routes/messageroutes")
 const chatrouter = require("./Routes/chatroutes")
 const app = express();
-const corsoptions = { credentials: true, origin: true }
+const corsoptions = { credentials: true, origin: "https://frabjous-arithmetic-7d5d25.netlify.app" }
 const path = require("path")
 const PORT = process.env.PORT || 5000
 
@@ -21,10 +21,10 @@ app.use("/api/chats", chatrouter);
 app.use("/api/messages", messagerouter);
 connection();
 
-const server = app.listen(PORT, () => { console.log("listening on port 5000"); })
+const server = app.listen(PORT, () => { console.log(`listening on port${PORT}`); })
 const io = require("socket.io")(server, {
   cors: {
-    origin: "http://localhost:3000"
+    origin: "https://frabjous-arithmetic-7d5d25.netlify.app"
   }
 })
 
