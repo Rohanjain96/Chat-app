@@ -35,7 +35,7 @@ const Homepage = () => {
     try
     {
         // const {data} = await axios.post("https://mern-chatify-app.herokuapp.com/api/users/checkcookie",{token} ,{ withCredentials: true, credentials: "include" });
-        const {data} = await axios.post("/api/users/checkcookie" ,{ withCredentials: true, credentials: "include" });
+        const {data} = await axios.get("/api/users/checkcookie" ,{ withCredentials: true, credentials: "include" });
         if (data) {
           console.log("data is",data)
           setUser({type:"changeuser", payload: data});
