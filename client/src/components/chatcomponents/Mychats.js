@@ -5,14 +5,16 @@ import { Chatstate } from '../../context/ChatProvider.js';
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import SideDrawer from '../chatcomponents/SideDrawer'
 import ProfileDrawer from '../Drawer/ProfileDrawer.js';
+import { useNavigate } from 'react-router-dom';
 import GroupModal from './GroupModal.js';
 import socket from '../../context/socket.js';
 import Skeleton from './Skeleton.js';
 
 const Mychats = () => {
 
-  const { chats, setChats, selectedchat, setSelectedChat, user,setUser,fetchagain, setFetchAgain } = Chatstate()
+  const { chats, setChats, selectedchat, setSelectedChat, user,fetchagain, setFetchAgain } = Chatstate()
   const toast = useToast();
+  const navigate = useNavigate();
   const [Chatloading,setChatLoading] = useState(true)
   const fetchchats = async () => {
     // const User = user.user
@@ -34,11 +36,25 @@ const Mychats = () => {
     }
   }
 
-
   useEffect(() => {
     fetchchats();
   }, [fetchagain]);
 
+  const clearCookie = async () => {
+    try {
+      const { data } = await axios.post("/api/chats/removecookie",{ withCredentials: true, credentials: "include" });
+      if(data)
+      navigate("/", { replace: true });
+    } catch (error) {
+      toast({
+        title: error.message,
+        description: error.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      })
+    }
+  }
   const capatilize = (name) => {
     return name.charAt(0).toUpperCase() + name.slice(1)
   }
