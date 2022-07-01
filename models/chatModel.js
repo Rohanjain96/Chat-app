@@ -21,6 +21,10 @@ const chatSchema = new Schema({
         ref:"Message",
     },
 
+    pic:{
+        type:String
+    },
+
     groupAdmin:{
         type:mongoose.Schema.Types.ObjectId
         ,ref:"User"

@@ -2,16 +2,18 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser")
 const dotenv = require("dotenv")
+const path = require("path");
 dotenv.config(".env")
 const connection = require("./db/db.js");
 const userrouter = require("./Routes/userroutes")
 const messagerouter = require("./Routes/messageroutes")
 const chatrouter = require("./Routes/chatroutes")
-const app = express();
-const corsoptions = { credentials: true, origin: "https://frabjous-arithmetic-7d5d25.netlify.app" }
-const path = require("path")
-const PORT = process.env.PORT || 5000
 
+const app = express();
+const corsoptions = { credentials: true, origin: "https://mern-chatify.netlify.app"};
+// const corsoptions = { credentials: true, origin: "http://192.168.1.36:3000"};
+const PORT = process.env.PORT || 5000
+// global.globaltoken=""
 app.use(cors(corsoptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
@@ -19,12 +21,22 @@ app.use(cookieParser())
 app.use("/api/users", userrouter);
 app.use("/api/chats", chatrouter);
 app.use("/api/messages", messagerouter);
+
+if(process.env.NODE_ENV === 'production')
+{
+  app.use(express.static(path.join(__dirname, '/client/build')))
+  app.get("*",(req,res)=>{
+    res.sendFile(path.resolve(__dirname,"client","build","index.html"));
+  })
+}
 connection();
 
-const server = app.listen(PORT, () => { console.log(`listening on port${PORT}`); })
+const server = app.listen(PORT, () => { console.log(`listening on port:${PORT}`); })
 const io = require("socket.io")(server, {
   cors: {
-    origin: "https://frabjous-arithmetic-7d5d25.netlify.app"
+    // origin: "https://mern-chatify.netlify.app"
+    // origin: "http://192.168.1.36:3000"
+    // origin:"localhost:3000"
   }
 })
 

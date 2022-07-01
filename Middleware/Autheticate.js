@@ -3,14 +3,13 @@ const User = require("../models/userModel.js");
 
 const protect = async (req, res, next) => {
   try {
-  let token;
+  let token = req.cookies.jwtoken
 
-  if (req.cookies.jwtoken) {
-  
-    token = req.cookies.jwtoken;
+  if (token) {
+    // token = globaltoken
 
       //decodes token id
-      const decoded = jwt.verify(token,process.env.secret_key);
+      const decoded = jwt.verify(token,process.env.Secret_key);
       req.user = await User.findById(decoded.userId).select("-password");
       next();
     }

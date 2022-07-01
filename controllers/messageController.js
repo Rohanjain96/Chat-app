@@ -20,7 +20,7 @@ const sendMessage = async(req,res)=>{
             path:"chat.users",
             select:"name pic email phonenumber"
         });
-        await Chat.findByIdAndUpdate(req.body.chatId,{latestMessage:newmessage});
+        await Chat.findByIdAndUpdate(chatId,{latestMessage:newmessage});
         res.json(newmessage);
     } catch (error) {
         res.status(401).json(error.Message);

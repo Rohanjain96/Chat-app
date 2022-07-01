@@ -3,8 +3,8 @@ const { sendMessage, getMessages } = require("../controllers/messageController")
 const { protect } = require("../Middleware/Autheticate");
 const router = express.Router();
 
-router.get("/:chatId", protect, getMessages);
-router.post("/sendmessage", protect, sendMessage);
+router.get("/:chatId", getMessages);
+router.post("/sendmessage",protect, sendMessage);
 
 
 module.exports = router;

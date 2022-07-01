@@ -19,6 +19,7 @@ const login = async (req, res) => {
                 expires: new Date(Date
                     .now() + 2592000000), httpOnly: false
             });
+            // globaltoken = token;
             res.json({
                 _id: user._id,
                 name: user.name,
@@ -38,6 +39,7 @@ const login = async (req, res) => {
 
 const getAllUser = async (req, res) => {
     let keyword;
+    // const {user} = req.body
     if (!req.query.search) {
         keyword = {};
     }
@@ -54,6 +56,7 @@ const getAllUser = async (req, res) => {
 const register = async (req, res) => {
     try {
         const { name, email, password, phonenumber, picture } = req.body;
+        let user
         if (!name || !email || !password || !phonenumber) {
             res.status(400);
             throw new Error("Please Enter all the Feilds");
@@ -64,13 +67,17 @@ const register = async (req, res) => {
             throw new Error("User already exists");
         }
 
+        if(picture!=="")  
+        user = await User.create({ name, email, password, phonenumber, pic: picture });
+        else
+        user = await User.create({ name, email, password, phonenumber });
 
-        const user = await User.create({ name, email, password, phonenumber, pic: picture });
         const token = generateauthtoken(user._id);
         res.cookie("jwtoken", token, {
             expires: new Date(Date
                 .now() + 2592000000), httpOnly: false
         });
+        // globaltoken = token;
 
         if (user) {
             res.json(
@@ -81,6 +88,7 @@ const register = async (req, res) => {
                     email: user.email,
                     isadmin: user.isadmin,
                     pic: user.picture,
+                    token:token
                 }
             )
         }
@@ -92,11 +100,24 @@ const register = async (req, res) => {
 
 }
 
+// const getUser = async (req, res) => {
+//     const {token} = req.body
+//     globaltoken = token
+//     if(token)
+//     {
+//         const decoded = jwt.verify(token, process.env.Secret_key);
+//         const data = await User.findById(decoded.userId).select("-password");
+//         res.json(data);
+//     }
+
+//     else return
+// }
+
 const checkcookie = async (req, res) => {
     let token = req.cookies.jwtoken;
     if (token == undefined)
         return;
-    const decoded = jwt.verify(token, process.env.secret_key);
+    const decoded = jwt.verify(token, process.env.Secret_key);
     data = await User.findById(decoded.userId).select("-password");
     res.json(data);
 }
@@ -106,4 +127,4 @@ const removecookie = async (req, res) => {
 }
 
 
-module.exports = { login, getAllUser, register, checkcookie, removecookie }
+module.exports = { login, getAllUser,register,checkcookie,removecookie}
