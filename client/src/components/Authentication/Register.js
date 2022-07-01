@@ -21,7 +21,7 @@ const Register = () => {
         e.preventDefault();
         if (password === confirmpassword) {
             try {
-                const { data } = await axios.post("https://mern-chatify-app.herokuapp.com/api/users/register", {
+                const { data } = await axios.post("/api/users/register", {
                     name, email, password, phonenumber, picture:picture
                 }, { withCredentials: true, credentials: "include" });
                 setNotMatch(false)

@@ -15,7 +15,7 @@ const Login = () => {
     const login = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post("https://mern-chatify-app.herokuapp.com/api/users/login", {
+            const { data } = await axios.post("/api/users/login", {
                 phonenumber, password
             }, { withCredentials: true, credentials: "include" });
             setPhonenumber("");
