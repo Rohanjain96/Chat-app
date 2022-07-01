@@ -10,7 +10,7 @@ const messagerouter = require("./Routes/messageroutes")
 const chatrouter = require("./Routes/chatroutes")
 
 const app = express();
-const corsoptions = { credentials: true, origin: "https://mern-chatify.netlify.app"};
+const corsoptions = { credentials: true};
 // const corsoptions = { credentials: true, origin: "http://192.168.1.36:3000"};
 const PORT = process.env.PORT || 5000
 // global.globaltoken=""
@@ -24,9 +24,9 @@ app.use("/api/messages", messagerouter);
 
 if(process.env.NODE_ENV === 'production')
 {
-  app.use(express.static(path.join(__dirname, '/client/build')))
+  app.use(express.static(path.resolve( '/client/build')))
   app.get("*",(req,res)=>{
-    res.sendFile(path.resolve(__dirname,"client","build","index.html"));
+    res.sendFile(path.resolve("client","build","index.html"));
   })
 }
 connection();
