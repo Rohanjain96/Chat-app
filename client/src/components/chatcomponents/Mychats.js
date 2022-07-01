@@ -5,48 +5,19 @@ import { Chatstate } from '../../context/ChatProvider.js';
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import SideDrawer from '../chatcomponents/SideDrawer'
 import ProfileDrawer from '../Drawer/ProfileDrawer.js';
-import { useNavigate } from 'react-router-dom';
 import GroupModal from './GroupModal.js';
 import socket from '../../context/socket.js';
-import Cookies from "js-cookie"
 import Skeleton from './Skeleton.js';
 
 const Mychats = () => {
 
   const { chats, setChats, selectedchat, setSelectedChat, user,setUser,fetchagain, setFetchAgain } = Chatstate()
   const toast = useToast();
-  const navigate = useNavigate();
   const [Chatloading,setChatLoading] = useState(true)
-  const checkcookie = async () => {
-    try
-    {
-      // const token = Cookies.get("jwtoken")
-      // if(token)
-      // {
-        const {data} = await axios.post("/api/users/user" ,{ withCredentials: true, credentials: "include" });
-        if (data) {
-          setUser({type:"changeuser", payload: data});
-          fetchchats();
-        }
-      // }
-      else navigate("/")
-    }
-    catch(error)
-    {
-      toast({
-        title: error.message,
-        description: error.message,
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      })
-    }
-  }
-
   const fetchchats = async () => {
     // const User = user.user
     try {
-      const { data } = await axios.post("https://mern-chatify-app.herokuapp.com/api/chats/fetchchats",{ withCredentials: true, credentials: "include" });
+      const { data } = await axios.post("/api/chats/fetchchats",{ withCredentials: true, credentials: "include" });
       if (data) {
         setChats({ type: "changechats", payload: [...data] });
       }
@@ -63,28 +34,11 @@ const Mychats = () => {
     }
   }
 
-  useEffect(() => {
-    checkcookie();
-  }, []);
 
   useEffect(() => {
     fetchchats();
   }, [fetchagain]);
 
-  const clearCookie = async () => {
-    try {
-        Cookies.remove("jwtoken")
-        navigate("/", { replace: true });
-    } catch (error) {
-      toast({
-        title: error.message,
-        description: error.message,
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      })
-    }
-  }
   const capatilize = (name) => {
     return name.charAt(0).toUpperCase() + name.slice(1)
   }
