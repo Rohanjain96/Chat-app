@@ -12,7 +12,7 @@ const capatilize = (name) => {
 
 const ChatProfileDrawer = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const { setChats, selectedchat, user, setSelectedChat } = Chatstate();
+    const { selectedchat, user, setSelectedChat,setFetchAgain } = Chatstate();
     const [editbutton, setEditButton] = useState(false);
     const [newGroupname, setNewGroupName] = useState("");
     const btnRef = React.useRef();
@@ -33,31 +33,14 @@ const ChatProfileDrawer = () => {
             })
         }
         setEditButton(false);
-        fetchchats()
-    }
-
-    const fetchchats = async () => {
-        try {
-            const { data } = await axios.get("/api/chats/fetchchats", { withCredentials: true, credentials: "include" });
-            if (data) {
-            setChats({ type: "changechats", payload: [...data]});
-            }
-        } catch (error) {
-            toast({
-                title: error.message,
-                description: error.message,
-                status: "error",
-                duration: 5000,
-                isClosable: true,
-            })
-        }
+        setFetchAgain(true)
     }
 
     const leaveGroup = async () => {
         try {
             const { data } = await axios.patch("https://mern-chatify-app.herokuapp.com/api/chats/leaveGroup", { chatId: selectedchat.chat._id, userId: user._id }, { withCredentials: true, credentials: "include" });
             if (data) {
-                fetchchats()
+                setFetchAgain(true)
                 setSelectedChat({ type: "changechat", payload: null })
             }
         } catch (error) {
