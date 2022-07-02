@@ -127,7 +127,7 @@ const ChatProfileDrawer = () => {
                                             <IconButton cursor={"pointer"} _hover={{ background: "none" }} background={"transparent"}
                                                 _focusWithin={{ background: "none" }} _focus={{ boxShadow: "none" }}
                                                 icon={<CheckIcon />} onClick={() => {
-                                                    if(newGroupname.trim.length>0)
+                                                    if(newGroupname.trim().length>0)
                                                     {
                                                         handleGroupname()
                                                         setNewGroupName("")
