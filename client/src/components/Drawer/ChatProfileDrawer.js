@@ -22,7 +22,7 @@ const ChatProfileDrawer = () => {
             const { data } = await axios.patch("/api/chats/renamegroup", { chatId: selectedchat.chat._id, chatName: newGroupname }, { withCredentials: true, credentials: "include" });
             setEditButton(false);
             setNewGroupName("");
-            setSelectedChat({ type: "changechat", payload: data });
+            setSelectedChat({ type: "changechat", payload: [...data] });
         } catch (error) {
             toast({
                 title: error.message,
