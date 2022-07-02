@@ -38,7 +38,7 @@ const ChatProfileDrawer = () => {
 
     const fetchchats = async () => {
         try {
-            const { data } = await axios.get("https://mern-chatify-app.herokuapp.com/api/chats/fetchchats", { withCredentials: true, credentials: "include" });
+            const { data } = await axios.get("/api/chats/fetchchats", { withCredentials: true, credentials: "include" });
             if (data) {
             setChats({ type: "changechats", payload: [...data]});
             }
