@@ -13,6 +13,7 @@ const ChatBox = () => {
     const [loading,setLoading] = useState(false)
     const [fetchedmessages, setFetchedMessages] = useState([])
     const [newMessage, setNewMessage] = useState("");
+    const [height, setHeight] = useState("")
     const toast = useToast()
     const fetchmessage = async () => {
         try {
@@ -57,8 +58,11 @@ const ChatBox = () => {
             sendmessage()
         }
     }
+    const focus = ()=>setHeight("45vh")
+    const blur = ()=>setHeight("89vh")
 
-    useEffect(() => {
+    useEffect(() => {       
+        setHeight("89vh")
         selectedchatcompare.current = selectedchat;
     }, [])
 
@@ -147,7 +151,7 @@ const ChatBox = () => {
                         <Box display={"flex"} w={"100%"} h={"5vh"} > 
                             <FormControl display={"flex"} onKeyDown={typinghandler}>
                                 <Input w={{ base: "95%", lg: "100%" }}  autoComplete="disabled" fontSize={"sm"} h={"9"} placeholder=''
-                                    bg="white" ml={{ base: "1", lg: "0" }} mr={{ base: "0", lg: "1"}} onChange={typinghandler} value={newMessage}  />
+                                    bg="white" ml={{ base: "1", lg: "0" }} mr={{ base: "0", lg: "1"}} onChange={typinghandler} value={newMessage} onFocus={()=>focus()} onBlur={()=>blur()}  />
                             </FormControl>
                             <IconButton aria-label='Send Message' type='submit' display={{ base: "block", lg: "none" }} w={1} size={"sm"}
                                 _focus={{ boxShadow: "none" }} height={"9"} icon={<ArrowForwardIcon />} outline={"none"} onClick={() => {

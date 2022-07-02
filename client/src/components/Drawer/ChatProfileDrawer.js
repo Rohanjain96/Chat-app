@@ -40,7 +40,7 @@ const ChatProfileDrawer = () => {
         try {
             const { data } = await axios.get("https://mern-chatify-app.herokuapp.com/api/chats/fetchchats", { withCredentials: true, credentials: "include" });
             if (data) {
-                setChats(data);
+            setChats({ type: "changechats", payload: [...data]});
             }
         } catch (error) {
             toast({
