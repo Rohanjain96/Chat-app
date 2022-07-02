@@ -114,7 +114,7 @@ const ChatProfileDrawer = () => {
                                             <Box display={"flex"} flexDirection={"column"} width={"95%"}>
                                                 <Text color={"whatsapp.500"} fontSize={"lg"} mb={2}>Name</Text>
                                                 <Input w="95%" mr={1} autoComplete="none" fontSize={"sm"} value={newGroupname} borderRadius={0} p={0} border={"none"} _focus={{ ouline: "none", borderBottom: " 2px solid green" }} _hover={{ borderBottom: "2px solid green" }} _focusWithin={{ outline: "none" }} borderBottom={" 2px solid green"}
-                                                    placeholder="Enter new Group Name" onChange={(e) => { setNewGroupName(e.target.value) }} />
+                                                    placeholder="Enter new Group Name" onChange={(e) => { e.target.value.trim.length>0?setNewGroupName(e.target.value):setNewGroupName(newGroupname)}} />
                                             </Box>
                                             :
                                             <Box display={"flex"} flexDirection={"column"}>

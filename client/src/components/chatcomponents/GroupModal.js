@@ -41,7 +41,7 @@ const GroupModal = () => {
             if (!chats.find((c) => {
                 return c._id === data._id
             }))
-            setChats([data,...chats]);
+            setChats({ type: "changechats", payload: [data,...chats.chats]});
             setSelectedChat({ type: "changechat", payload: data });
             setSearch("");
             setGroupName("")

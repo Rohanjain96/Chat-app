@@ -113,15 +113,18 @@ const AddremoveGroupModal = (props) => {
                         {        
                             selectedUsers.length > 0 ? <Box display={"flex"} width={"100%"} mb={1} p={1}  flexWrap={"wrap"}>
                                 {
-                                    selectedUsers.map((user) => {
+                                    selectedUsers.map((User) => {
                                         return (
-                                            <Box display={"flex"} key={user._id} background={"whatsapp.300"} mr={2} mb={1} p={2} borderRadius={"lg"} alignItems={"center"}>
-                                                <Text color={"white"} mr={1} fontWeight={"semibold"}>{capatilize(user.name)}</Text>
+                                            <Box display={"flex"} key={User._id} background={"whatsapp.300"} mr={2} mb={1} p={2} borderRadius={"lg"} alignItems={"center"}>
+                                                <Text color={"white"} mr={1} fontWeight={"semibold"}>{capatilize(User.name)}</Text>
+                                                {
+                                                    user.user._id === User._id?"":
                                                 <IconButton icon={<SmallCloseIcon />} _focus={{ boxShadow: "none" }}  
                                                  _focusWithin={{ background: "none" }} minWidth={0} lineHeight={0} _hover={{ background: "none" }} 
                                                  size={"sm"} onClick={() => {
-                                                    removeuser(user)
+                                                    removeuser(User)
                                                     }} bg={"transparent"} />
+                                                }
                                             </Box>
                                         )
                                     })
