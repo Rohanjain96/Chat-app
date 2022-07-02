@@ -58,7 +58,7 @@ const ChatBox = () => {
             sendmessage()
         }
     }
-    const focus = ()=>setHeight("60vh")
+    const focus = ()=>setHeight("65vh")
     const blur = ()=>setHeight("80vh")
 
     useEffect(() => {       
