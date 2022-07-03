@@ -43,7 +43,7 @@ useEffect(() => {
 
   return (
     <>
-    <Box w={"100vw"} h={"100%"} display={"flex"} justifyContent={"center"} alignItems={"center"} bg={"gray.300"} overflowX={"hidden"} >
+    <Box w={"100vw"} h={"100vh"} display={"flex"} justifyContent={"center"} alignItems={"center"} bg={"gray.300"} overflowX={"hidden"} >
     <Box bg={"white"} w={{base:"100%",lg:"94%"}} h={{base:"100%",lg:"95%"}} display="flex">
       <Mychats></Mychats>
       <ChatBox></ChatBox>
