@@ -134,7 +134,7 @@ const ChatBox = () => {
                                         fetchedmessages !== undefined && fetchedmessages.map((message, index) => {
                                             return (
                                                 <Box w={"100%"} display={"flex"} justifyContent={message.sender._id === user.user._id ? "right" : "left"}
-                                                    key={message._id}>
+                                                    key={message._id} pb={2}>
                                                     <Box borderRadius={"5px"} bg={message.sender._id !== user.user._id ? "#BEE3F8" : "green.100"} maxW={"40%"} p={2}>
                                                         {selectedchat.chat.isGroupChat ? <Text fontWeight={"bold"} >{(getSenderName(fetchedmessages, index, user))}</Text> : ""}
                                                         <Text textAlign={"end"}
@@ -148,7 +148,7 @@ const ChatBox = () => {
                                     }
                                 </Box>}
                         </Box>
-                        <Box display={"flex"} w={"100%"} h={"40px"} alignItems={"center"} position="sticky" bottom={{ base: "4px", lg: "6px" }}>
+                        <Box display={"flex"} w={"100%"} h={"40px"} alignItems={"center"} position="sticky" bottom={{ base: "6px", lg: "6px" }}>
                             <FormControl display={"flex"} onKeyDown={typinghandler} w={{ base: "95%", lg: "99%" }}>
                                 <Input w={{ base: "100%", lg: "100%" }} autoComplete="disabled" fontSize={"sm"} h={"9"} placeholder=''
                                     bg="white" ml={{ base: "1", md: "0" }} mr={{ base: "0", lg: "1" }} mt={2} onChange={typinghandler} value={newMessage} onFocus={() => focus()} onBlur={() => blur()} />
