@@ -122,7 +122,7 @@ const checkcookie = async (req, res) => {
     res.json(data);
 }
 const removecookie = async (req, res) => {
-    res.clearCookie('jwtoken', { path: "/chats" })
+    res.clearCookie('jwtoken', { path: "/" })
     res.status(200).json("cookie cleared")
 }
 

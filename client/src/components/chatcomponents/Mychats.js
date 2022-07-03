@@ -43,7 +43,6 @@ const Mychats = () => {
   const clearCookie = async () => {
     try {
       const { data } = await axios.get("/api/chats/removecookie",{ withCredentials: true, credentials: "include" });
-      if(data)
       navigate("/", { replace: true });
     } catch (error) {
       toast({
@@ -77,7 +76,7 @@ const Mychats = () => {
     <>
       <Box position={"relative"} w={{ base: "100%", md: "40%" }} d={{ base: selectedchat.chat === null ? "flex" : "none", md: "flex" }} flexDirection="column" 
       h={"100%"} overflowX={"hidden"}>
-        <Box w={"100%"} h={{base:"11%",lg:"9%"}} bg="gray.100" mb={1} display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+        <Box w={"100%"} h={{base:"8%",lg:"9%"}} bg="gray.100" mb={1} display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
           <ProfileDrawer></ProfileDrawer>
           <Text fontWeight={"medium"} fontSize={"2xl"}>CHATIFY</Text>
           <Box mr={3}>
@@ -94,7 +93,7 @@ const Mychats = () => {
 
         {
         Chatloading?<Skeleton></Skeleton>:  
-        <Stack w={"100%"} h={"87%"} overflowY={"auto"} bg={"gray.100"} p={3} mb={{base:"40px",lg:"0px"}} >
+        <Stack w={"100%"} overflowY={"auto"} bg={"gray.100"} p={3} pb={{base:10,lg:3}} >
           {
             chats.chats.map((chat) => {
               return (
