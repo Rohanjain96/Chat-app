@@ -42,7 +42,7 @@ const Mychats = () => {
 
   const clearCookie = async () => {
     try {
-      const { data } = await axios.post("/api/chats/removecookie",{ withCredentials: true, credentials: "include" });
+      const { data } = await axios.get("/api/chats/removecookie",{ withCredentials: true, credentials: "include" });
       if(data)
       navigate("/", { replace: true });
     } catch (error) {

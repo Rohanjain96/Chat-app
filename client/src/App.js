@@ -4,13 +4,14 @@ import Chatpage from "./pages/chatpage/Chatpage";
 import Homepage from "./pages/homepage/Homepage";
 function App() {
   return (
-    <div className="App">  
-    <Routes>
-    <Route exact path="/" element={<Homepage/>}></Route>
-    <Route  path="/chats" element={<Chatpage/>}></Route>
-    </Routes>
-
-    </div>
+    <>
+      <div className="App">
+        <Routes>
+          <Route exact path="/" element={<Homepage />}></Route>
+          <Route path="/chats" element={<Chatpage />}></Route>
+        </Routes>
+      </div>
+    </>
   );
 }
 
