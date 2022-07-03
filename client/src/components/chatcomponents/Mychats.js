@@ -93,7 +93,7 @@ const Mychats = () => {
 
         {
         Chatloading?<Skeleton></Skeleton>:  
-        <Stack w={"100%"} overflowY={"auto"} bg={"gray.100"} p={3} pb={{base:10,lg:3}} >
+        <Stack w={"100%"} h={"100%"} overflowY={"auto"} bg={"gray.100"} p={3} pb={{base:10,lg:3}} >
           {
             chats.chats.map((chat) => {
               return (
