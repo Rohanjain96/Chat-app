@@ -59,10 +59,10 @@ const ChatBox = () => {
         }
     }
     const focus = () => setHeight("65vh")
-    const blur = () => setHeight("85vh")
+    const blur = () => setHeight("80vh")
 
     useEffect(() => {
-        setHeight("85vh")
+        setHeight("80vh")
         selectedchatcompare.current = selectedchat;
     }, [])
 
@@ -123,13 +123,13 @@ const ChatBox = () => {
                                 </Text>
                             </Box>
                         </Box>
-                        <Box w={"100%"} minHeight={{ base: `${height}`, lg: "79vh" }} mb={1} zIndex={2} position="relative">
+                        <Box w={"100%"} height={{ base: `${height}`, lg: "79vh" }} mb={1} zIndex={2} position="relative">
                             {loading ?
                                 <Stack display={"flex"} justifyContent={"center"} alignItems={"center"} width={"100%"} h={"100%"} bg="white" mb={2}>
                                     <Spinner size='xl' />
                                 </Stack>
                                 :
-                                <Box width={"100%"} h={{ base: "78vh", lg: "100%" }} bg="white" mb={2} overflowY={"auto"} p={6} id="Chatbox">
+                                <Box width={"100%"} h={{ base: "100%", lg: "100%" }} bg="white" mb={2} overflowY={"auto"} p={6} id="Chatbox">
                                     {
                                         fetchedmessages !== undefined && fetchedmessages.map((message, index) => {
                                             return (
@@ -148,7 +148,7 @@ const ChatBox = () => {
                                     }
                                 </Box>}
                         </Box>
-                        <Box display={"flex"} w={"99%"} h={"40px"} alignItems={"center"} position="absolute" bottom={{ base: "10px", lg: "6px" }}>
+                        <Box display={"flex"} w={"99%"} h={"40px"} alignItems={"center"} position="sticky" bottom={{ base: "10px", lg: "6px" }}>
                             <FormControl display={"flex"} onKeyDown={typinghandler} w={{ base: "95%", lg: "99%" }}>
                                 <Input w={{ base: "100%", lg: "100%" }} autoComplete="disabled" fontSize={"sm"} h={"9"} placeholder=''
                                     bg="white" ml={{ base: "1", md: "0" }} mr={{ base: "0", lg: "1" }} mt={2} onChange={typinghandler} value={newMessage} onFocus={() => focus()} onBlur={() => blur()} />
