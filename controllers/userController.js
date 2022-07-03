@@ -115,7 +115,6 @@ const register = async (req, res) => {
 
 const checkcookie = async (req, res) => {
     let token = req.cookies.jwtoken;
-    console.log("token is:",token);
     if (token == undefined)
         return;
     const decoded = jwt.verify(token, process.env.Secret_key);
@@ -123,7 +122,7 @@ const checkcookie = async (req, res) => {
     res.json(data);
 }
 const removecookie = async (req, res) => {
-    res.clearCookie('jwtoken', { path: "/" })
+    res.clearCookie('jwtoken', { path: "/chats" })
     res.status(200).json("cookie cleared")
 }
 
