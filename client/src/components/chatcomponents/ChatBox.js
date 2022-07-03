@@ -148,7 +148,7 @@ const ChatBox = () => {
                                     }
                                 </Box>}
                         </Box>
-                        <Box display={"flex"} w={"100%"} h={"40px"} alignItems={"center"} position="sticky" bottom={{ base: "10px", lg: "6px" }}>
+                        <Box display={"flex"} w={"100%"} h={"40px"} alignItems={"center"} position="sticky" bottom={{ base: "14px", lg: "6px" }}>
                             <FormControl display={"flex"} onKeyDown={typinghandler} w={{ base: "95%", lg: "99%" }}>
                                 <Input w={{ base: "100%", lg: "100%" }} autoComplete="disabled" fontSize={"sm"} h={"9"} placeholder=''
                                     bg="white" ml={{ base: "1", md: "0" }} mr={{ base: "0", lg: "1" }} mt={2} onChange={typinghandler} value={newMessage} onFocus={() => focus()} onBlur={() => blur()} />

@@ -40,9 +40,9 @@ const Mychats = () => {
     fetchchats();
   }, [fetchagain]);
 
-  const clearCookie = async () => {
+  const clearCookie = () => {
     try {
-      const { data } = await axios.get("/api/chats/removecookie",{ withCredentials: true, credentials: "include" });
+      const { data } =  axios.get("/api/chats/removecookie",{ withCredentials: true, credentials: "include" });
       navigate("/", { replace: true });
     } catch (error) {
       toast({
