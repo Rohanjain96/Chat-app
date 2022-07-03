@@ -9,8 +9,8 @@ import socket from '../../context/socket'
 
 const ChatBox = () => {
     const selectedchatcompare = useRef(null);
-    const { selectedchat, user, setSelectedChat, setFetchAgain} = Chatstate();
-    const [loading,setLoading] = useState(false)
+    const { selectedchat, user, setSelectedChat, setFetchAgain } = Chatstate();
+    const [loading, setLoading] = useState(false)
     const [fetchedmessages, setFetchedMessages] = useState([])
     const [newMessage, setNewMessage] = useState("");
     const [height, setHeight] = useState("")
@@ -47,28 +47,28 @@ const ChatBox = () => {
         setFetchedMessages([])
         setNewMessage("");
         if (selectedchat.chat !== null)
-        fetchmessage();
+            fetchmessage();
         selectedchatcompare.current = selectedchat;
     }
         , [selectedchat])
-        
+
     const typinghandler = (e) => {
         setNewMessage(e.target.value)
         if (e.key === "Enter" && newMessage) {
             sendmessage()
         }
     }
-    const focus = ()=>setHeight("65vh")
-    const blur = ()=>setHeight("87vh")
+    const focus = () => setHeight("65vh")
+    const blur = () => setHeight("87vh")
 
-    useEffect(() => {       
+    useEffect(() => {
         setHeight("87vh")
         selectedchatcompare.current = selectedchat;
     }, [])
 
     const sendmessage = async (e) => {
         try {
-            if(newMessage.trim().length===0) return
+            if (newMessage.trim().length === 0) return
             setNewMessage(newMessage.trim())
             const message = { content: newMessage, chatId: selectedchat.chat._id }
             const { data } = await axios.post("/api/messages/sendmessage",
@@ -90,8 +90,8 @@ const ChatBox = () => {
     }
 
     useEffect(() => {
-       socket.on("recievedMessage", (message) => {
-           if (selectedchatcompare.current.chat === null || selectedchatcompare.current.chat._id !== message.chat._id) { return;}
+        socket.on("recievedMessage", (message) => {
+            if (selectedchatcompare.current.chat === null || selectedchatcompare.current.chat._id !== message.chat._id) { return; }
             else {
                 setFetchedMessages([...fetchedmessages, message])
             }
@@ -109,7 +109,7 @@ const ChatBox = () => {
                     <Box d={{ base: selectedchat ? "flex" : "none", md: "flex" }} flexDirection="column"
                         width={{ base: "100%", md: "60%" }} minHeight={"100%"} position={"relative"} overflow={"hidden"}
                         bg={"gray.200"} pl={{ base: 0, lg: 2 }} pb={2}>
-                        <Box width={"100%"} minHeight={{base:"7vh",lg:"8vh"}} bg={"gray.100"} display="flex" alignItems={"center"} 
+                        <Box width={"100%"} minHeight={{ base: "7vh", lg: "8vh" }} bg={"gray.100"} display="flex" alignItems={"center"}
                             pt={2} pb={2} top="0" zIndex={"5"}>
                             <IconButton icon={<ArrowBackIcon />} h={9} p="0" d={{ base: "flex", lg: "none" }} size={"md"}
                                 outline={"none"}
@@ -123,35 +123,35 @@ const ChatBox = () => {
                                 </Text>
                             </Box>
                         </Box>
-                     <Box w={"100%"} height={{base:`${height}`,lg:"79vh"}}  mb={1} zIndex={2}>
-                        {loading?
-                        <Stack display={"flex"} justifyContent={"center"} alignItems={"center"} width={"100%"} h={"100%"} bg="white" mb={2}>
-                            <Spinner size='xl' />
-                        </Stack>
-                            :
-                        <Stack width={"100%"} h={{base:"100%",lg:"100%"}} bg="white" mb={2} overflow={"auto"} p={6} id="Chatbox">
-                            {
-                                fetchedmessages !== undefined && fetchedmessages.map((message, index) => {
-                                    return (
-                                        <Box w={"100%"} display={"flex"} justifyContent={message.sender._id === user.user._id ? "right" : "left"}
-                                            key={message._id}>
-                                            <Box borderRadius={"5px"} bg={message.sender._id !== user.user._id ? "#BEE3F8" : "green.100"} maxW={"40%"} p={2}>
-                                                {selectedchat.chat.isGroupChat ? <Text fontWeight={"bold"} >{(getSenderName(fetchedmessages, index, user))}</Text> : ""}
-                                                <Text textAlign={"end"}
-                                                    fontWeight={"normal"} mb={1}>
-                                                    {message.content}
-                                                </Text>
-                                            </Box>
-                                        </Box>
-                                    )
-                                })
-                            }
-                        </Stack>}
+                        <Box w={"100%"} height={{ base: `${height}`, lg: "79vh" }} mb={1} zIndex={2}>
+                            {loading ?
+                                <Stack display={"flex"} justifyContent={"center"} alignItems={"center"} width={"100%"} h={"100%"} bg="white" mb={2}>
+                                    <Spinner size='xl' />
+                                </Stack>
+                                :
+                                <Box width={"100%"} h={{ base: "100%", lg: "100%" }} bg="white" mb={2} overflowY={"auto"} p={6} id="Chatbox">
+                                    {
+                                        fetchedmessages !== undefined && fetchedmessages.map((message, index) => {
+                                            return (
+                                                <Box w={"100%"} display={"flex"} justifyContent={message.sender._id === user.user._id ? "right" : "left"}
+                                                    key={message._id}>
+                                                    <Box borderRadius={"5px"} bg={message.sender._id !== user.user._id ? "#BEE3F8" : "green.100"} maxW={"40%"} p={2}>
+                                                        {selectedchat.chat.isGroupChat ? <Text fontWeight={"bold"} >{(getSenderName(fetchedmessages, index, user))}</Text> : ""}
+                                                        <Text textAlign={"end"}
+                                                            fontWeight={"normal"} mb={1}>
+                                                            {message.content}
+                                                        </Text>
+                                                    </Box>
+                                                </Box>
+                                            )
+                                        })
+                                    }
+                                </Box>}
                         </Box>
-                        <Box display={"flex"} w={"100%"} h={"40px"} alignItems={"center"} position="absolute" bottom={{base:"0px",lg:"6px"}}> 
-                            <FormControl display={"flex"} onKeyDown={typinghandler} w={{base:"95%",lg:"99%"}}>
-                                <Input w={{ base: "100%", lg: "100%" }}  autoComplete="disabled" fontSize={"sm"} h={"9"} placeholder=''
-                                    bg="white" ml={{ base: "1", md: "0" }} mr={{base: "0", lg: "1" }} mt={2} onChange={typinghandler} value={newMessage} onFocus={()=>focus()} onBlur={()=>blur()} />
+                        <Box display={"flex"} w={"100%"} h={"40px"} alignItems={"center"} position="sticky" bottom={{ base: "0px", lg: "6px" }}>
+                            <FormControl display={"flex"} onKeyDown={typinghandler} w={{ base: "95%", lg: "99%" }}>
+                                <Input w={{ base: "100%", lg: "100%" }} autoComplete="disabled" fontSize={"sm"} h={"9"} placeholder=''
+                                    bg="white" ml={{ base: "1", md: "0" }} mr={{ base: "0", lg: "1" }} mt={2} onChange={typinghandler} value={newMessage} onFocus={() => focus()} onBlur={() => blur()} />
                             </FormControl>
                             <IconButton aria-label='Send Message' type='submit' display={{ base: "block", lg: "none" }} w={1} size={"sm"} mt={2}
                                 _focus={{ boxShadow: "none" }} height={"9"} icon={<ArrowForwardIcon />} outline={"none"} onClick={() => {
