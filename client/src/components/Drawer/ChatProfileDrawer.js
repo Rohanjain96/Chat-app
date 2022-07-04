@@ -70,7 +70,7 @@ const ChatProfileDrawer = () => {
                     </Box>
                     <Wrap mb={7}>
                         <WrapItem display={"flex"} justifyContent="center" w={"100%"}>
-                            <Avatar h={"44"} w={"44"} name={user.user.name} src={user.user.pic} />
+                            <Avatar h={"44"} w={"44"} name={selectedchat.chat.name} src={selectedchat.chat.pic} />
                         </WrapItem>
                     </Wrap>
                     {
@@ -78,15 +78,15 @@ const ChatProfileDrawer = () => {
                             <Box>
                                 <Box p={8} display={"flex"} flexDirection={"column"} justifyContent={"center"} w={"100%"} bg={"white"} h={"20"} mb={4}>
                                     <Text color={"whatsapp.500"} fontSize={"lg"} mb={2}>Name</Text>
-                                    <Text fontSize={"xl"}> {capatilize(selectedchat.chat.chatName === 'sender' ? selectedchat.chat.users[1].name : selectedchat.chat.chatName)}</Text>
+                                    <Text fontSize={"xl"}> {capatilize(selectedchat.chat.users[0]._id === user.user._id?selectedchat.chat.users[1].name : selectedchat.chat.users[0].name)}</Text>
                                 </Box>
                                 <Box p={8} display={"flex"} flexDirection={"column"} justifyContent={"center"} w={"100%"} bg={"white"} h={"20"} mb={6}>
                                     <Text color={"whatsapp.500"} fontSize={"lg"} mb={2}>Phone Number</Text>
-                                    <Text fontSize={"xl"}>{selectedchat.chat.users[1].phonenumber}</Text>
+                                    <Text fontSize={"xl"}>{selectedchat.chat.users[0]._id === user.user._id?selectedchat.chat.users[1].phonenumber : selectedchat.chat.users[0].phonenumber}</Text>
                                 </Box>
                                 <Box p={8} display={"flex"} flexDirection={"column"} justifyContent={"center"} w={"100%"} bg={"white"} h={"20"}>
                                     <Text color={"whatsapp.500"} fontSize={"lg"} mb={2}>Email</Text>
-                                    <Text fontSize={"xl"}>{selectedchat.chat.users[1].email} </Text>
+                                    <Text fontSize={"xl"}>{selectedchat.chat.users[0]._id === user.user._id?selectedchat.chat.users[1].email : selectedchat.chat.users[0].email} </Text>
                                 </Box>
                             </Box>
                             :
