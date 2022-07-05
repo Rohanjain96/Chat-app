@@ -59,10 +59,10 @@ const ChatBox = () => {
         }
     }
     const focus = () => setHeight("60vh")
-    const blur = () => setHeight("80vh")
+    const blur = () => setHeight("78vh")
 
     useEffect(() => {
-        setHeight("80vh")
+        setHeight("78vh")
         selectedchatcompare.current = selectedchat;
     }, [])
 
