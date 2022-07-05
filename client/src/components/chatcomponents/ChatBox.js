@@ -59,10 +59,10 @@ const ChatBox = () => {
         }
     }
     const focus = () => setHeight("65vh")
-    const blur = () => setHeight("80vh")
+    const blur = () => setHeight("70vh")
 
     useEffect(() => {
-        setHeight("80vh")
+        setHeight("70vh")
         selectedchatcompare.current = selectedchat;
     }, [])
 
@@ -124,29 +124,31 @@ const ChatBox = () => {
                             </Box>
                         </Box>
                         <Box w={"100%"} minHeight={{ base: `${height}`, lg: "79vh" }} mb={1} zIndex={2} position="relative">
-                            {loading ?
-                                <Stack display={"flex"} justifyContent={"center"} alignItems={"center"} width={"100%"} h={"100%"} bg="white" mb={2}>
-                                    <Spinner size='xl' />
-                                </Stack>
-                                :
-                                <Box width={"100%"} h={{ base: "85vh", lg: "100%" }} bg="white" mb={2} overflowY={"auto"} p={6} id="Chatbox">
-                                    {
-                                        fetchedmessages !== undefined && fetchedmessages.map((message, index) => {
-                                            return (
-                                                <Box w={"100%"} display={"flex"} justifyContent={message.sender._id === user.user._id ? "right" : "left" }
-                                                    key={message._id} pb={2}>
-                                                    <Box borderRadius={"5px"} bg={message.sender._id !== user.user._id ? "#BEE3F8" : "green.100"} maxW={"40%"} p={2}>
-                                                        {selectedchat.chat.isGroupChat ? <Text fontWeight={"bold"} >{(getSenderName(fetchedmessages, index, user))}</Text> : ""}
-                                                        <Text textAlign={"end"}
-                                                            fontWeight={"normal"} mb={1} color="white">
-                                                            {message.content}
-                                                        </Text>
+                            {
+                                loading ?
+                                    <Stack display={"flex"} justifyContent={"center"} alignItems={"center"} width={"100%"} h={"100%"} bg="white" mb={2}>
+                                        <Spinner size='xl' />
+                                    </Stack>
+                                    :
+                                    <Box width={"100%"} h={{ base: "100%", lg: "100%" }} bg="white" mb={2} overflowY={"auto"} p={6} id="Chatbox">
+                                        {
+                                            fetchedmessages !== undefined && fetchedmessages.map((message, index) => {
+                                                return (
+                                                    <Box w={"100%"} display={"flex"} justifyContent={message.sender._id === user.user._id ? "right" : "left"}
+                                                        key={message._id} pb={2}>
+                                                        <Box borderRadius={"5px"} bg={message.sender._id !== user.user._id ? "#BEE3F8" : "green.100"} maxW={"40%"} p={2}>
+                                                            {selectedchat.chat.isGroupChat ? <Text fontWeight={"bold"} >{(getSenderName(fetchedmessages, index, user))}</Text> : ""}
+                                                            <Text textAlign={"end"}
+                                                                fontWeight={"normal"} mb={1} color="white">
+                                                                {message.content}
+                                                            </Text>
+                                                        </Box>
                                                     </Box>
-                                                </Box>
-                                            )
-                                        })
-                                    }
-                                </Box>}
+                                                )
+                                            })
+                                        }
+                                    </Box>
+                            }
                         </Box>
                         <Box display={"flex"} w={"99%"} h={"40px"} alignItems={"center"} position="sticky" bottom={{ base: "10px", lg: "6px" }}>
                             <FormControl display={"flex"} onKeyDown={typinghandler} w={{ base: "95%", lg: "99%" }}>
