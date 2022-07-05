@@ -58,11 +58,11 @@ const ChatBox = () => {
             sendmessage()
         }
     }
-    const focus = () => setHeight("65vh")
-    const blur = () => setHeight("70vh")
+    const focus = () => setHeight("60vh")
+    const blur = () => setHeight("75vh")
 
     useEffect(() => {
-        setHeight("70vh")
+        setHeight("75vh")
         selectedchatcompare.current = selectedchat;
     }, [])
 
@@ -123,7 +123,7 @@ const ChatBox = () => {
                                 </Text>
                             </Box>
                         </Box>
-                        <Box w={"100%"} minHeight={{ base: `${height}`, lg: "79vh" }} mb={1} zIndex={2} position="relative">
+                        <Box w={"100%"} height={{ base: `${height}`, lg: "79vh" }} mb={1} zIndex={2} position="relative">
                             {
                                 loading ?
                                     <Stack display={"flex"} justifyContent={"center"} alignItems={"center"} width={"100%"} h={"100%"} bg="white" mb={2}>
