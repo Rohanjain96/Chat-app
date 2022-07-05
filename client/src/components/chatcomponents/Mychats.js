@@ -105,7 +105,7 @@ const Mychats = () => {
                 }}
                   bg={selectedchat.chat === chat ? "cyan.300" : "white"} mt={2} p={1}
                   borderRadius={8} display={"flex"} flexDirection="row" alignItems={"center"} _hover={{ backgroundColor: "cyan.300" }}
-                  color={selectedchat === chat ? "white" : "black"}>
+                  color={selectedchat.chat === chat ? "white" : "black"}>
                   <Wrap >
                     <WrapItem>
                       <Avatar size={"md"} ml={2} name={chat.name} src={chat.pic} />

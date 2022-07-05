@@ -59,10 +59,10 @@ const ChatBox = () => {
         }
     }
     const focus = () => setHeight("65vh")
-    const blur = () => setHeight("80vh")
+    const blur = () => setHeight("85vh")
 
     useEffect(() => {
-        setHeight("80vh")
+        setHeight("85vh")
         selectedchatcompare.current = selectedchat;
     }, [])
 
@@ -110,7 +110,7 @@ const ChatBox = () => {
                         width={{ base: "100%", md: "60%" }} minHeight={"100%"} position={"relative"} overflow={"hidden"}
                         bg={"gray.200"} pl={{ base: 0, lg: 2 }} pb={2}>
                         <Box width={"100%"} minHeight={{ base: "7vh", lg: "8vh" }} bg={"gray.100"} display="flex" alignItems={"center"}
-                            pt={2} pb={2} top="0" zIndex={"5"}>
+                            pt={2} pb={2} top="0" zIndex={"5"} position="sticky">
                             <IconButton icon={<ArrowBackIcon />} h={9} p="0" d={{ base: "flex", lg: "none" }} size={"md"}
                                 outline={"none"}
                                 onClick={() => setSelectedChat({ type: "changechat", payload: null })} />
@@ -133,12 +133,12 @@ const ChatBox = () => {
                                     {
                                         fetchedmessages !== undefined && fetchedmessages.map((message, index) => {
                                             return (
-                                                <Box w={"100%"} display={"flex"} justifyContent={message.sender._id === user.user._id ? "right" : "left"}
+                                                <Box w={"100%"} display={"flex"} justifyContent={message.sender._id === user.user._id ? "right" : "left" }
                                                     key={message._id} pb={2}>
                                                     <Box borderRadius={"5px"} bg={message.sender._id !== user.user._id ? "#BEE3F8" : "green.100"} maxW={"40%"} p={2}>
                                                         {selectedchat.chat.isGroupChat ? <Text fontWeight={"bold"} >{(getSenderName(fetchedmessages, index, user))}</Text> : ""}
                                                         <Text textAlign={"end"}
-                                                            fontWeight={"normal"} mb={1}>
+                                                            fontWeight={"normal"} mb={1} color="white">
                                                             {message.content}
                                                         </Text>
                                                     </Box>

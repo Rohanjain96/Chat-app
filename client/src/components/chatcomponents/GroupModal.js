@@ -38,7 +38,7 @@ const GroupModal = () => {
             }
 
             const { data } = await axios.post("/api/chats/creategroup", groupdata , { withCredentials: true, credentials: "include" });
-            if (!chats.find((c) => {
+            if (!chats.chats.find((c) => {
                 return c._id === data._id
             }))
             setChats({ type: "changechats", payload: [data,...chats.chats]});
