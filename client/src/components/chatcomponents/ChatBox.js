@@ -62,7 +62,7 @@ const ChatBox = () => {
     const blur = () => setHeight("78vh")
 
     useEffect(() => {
-        setHeight("80vh")
+        setHeight("84vh")
         selectedchatcompare.current = selectedchat;
     }, [])
 
@@ -107,7 +107,7 @@ const ChatBox = () => {
             {
                 selectedchat.chat ?
                     <Box d={{ base: selectedchat ? "flex" : "none", md: "flex" }} flexDirection="column"
-                        width={{ base: "100%", md: "60%" }} height={"100%"} position={"relative"} overflow={"hidden"}
+                        width={{ base: "100%", md: "60%" }} height={{base:"98%",lg: "100%" }} position={"relative"} overflow={"hidden"}
                         bg={"gray.200"}>
                         <Box width={"100%"} minHeight={{ base: "7vh", lg: "8vh" }} bg={"gray.100"} display="flex" alignItems={"center"}
                             pt={2} pb={2} top="0" zIndex={"5"} position="sticky">
@@ -130,7 +130,7 @@ const ChatBox = () => {
                                         <Spinner size='xl' />
                                     </Stack>
                                     :
-                                    <Box width={"100%"} h={{ base: "95%", lg: "98%" }} bg="whitealpha.100" mb={2} overflowY={"auto"} p={6} id="Chatbox">
+                                    <Box width={"100%"} h={{ base: "97%", lg: "98%" }} bg="whitealpha.100" mb={2} overflowY={"auto"} p={6} id="Chatbox">
                                         {
                                             fetchedmessages !== undefined && fetchedmessages.map((message, index) => {
                                                 return (
