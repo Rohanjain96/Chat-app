@@ -9,7 +9,7 @@ const AddremoveGroupModal = (props) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [Search, setSearch] = useState("");
     const [searchedusers, setSearchedUsers] = useState([]);
-    const {selectedchat, setSelectedChat,user } = Chatstate();
+    const {selectedchat, setSelectedChat,user,setFetchAgain } = Chatstate();
     const [selectedUsers, setSelectedUsers] = useState([])
     const [addUsers, setAddUsers] = useState([])
     const toast = useToast();
@@ -59,6 +59,7 @@ const AddremoveGroupModal = (props) => {
                 setSelectedChat({ type: "changechat", payload: data });
                 setSearch("");
                 setAddUsers([])
+                setFetchAgain(true)
             } catch (error) {
                 toast({
                     title: error.message,
@@ -86,6 +87,7 @@ const AddremoveGroupModal = (props) => {
             setSelectedUsers([...selectedUsers]);
             addUsers.splice(addUsers.indexOf(user), 1);
             setAddUsers([...addUsers]);
+            setFetchAgain(true)
 
         } catch (error) {
             toast({
