@@ -62,7 +62,7 @@ const ChatBox = () => {
     const blur = () => setHeight("78vh")
 
     useEffect(() => {
-        setHeight("78vh")
+        setHeight("93vh")
         selectedchatcompare.current = selectedchat;
     }, [])
 
@@ -130,7 +130,7 @@ const ChatBox = () => {
                                         <Spinner size='xl' />
                                     </Stack>
                                     :
-                                    <Box width={"100%"} h={{ base: "100%", lg: "100%" }} bg="white" mb={2} overflowY={"auto"} p={6} id="Chatbox">
+                                    <Box width={"100%"} h={{ base: "87vh", lg: "100%" }} bg="white" mb={2} overflowY={"auto"} p={6} id="Chatbox">
                                         {
                                             fetchedmessages !== undefined && fetchedmessages.map((message, index) => {
                                                 return (
@@ -149,17 +149,17 @@ const ChatBox = () => {
                                         }
                                     </Box>
                             }
-                        </Box>
-                        <Box display={"flex"} w={"99%"} h={"40px"} alignItems={"center"} position="sticky" bottom={{ base: "10px", lg: "6px" }}>
+                        <Box display={"flex"} w={"99%"} h={"40px"} alignItems={"center"} position="absolute" bottom={{ base: "2px", lg: "6px" }}>
                             <FormControl display={"flex"} onKeyDown={typinghandler} w={{ base: "95%", lg: "99%" }}>
                                 <Input w={{ base: "100%", lg: "100%" }} autoComplete="disabled" fontSize={"sm"} h={"9"} placeholder=''
-                                    bg="white" ml={{ base: "1", md: "0" }} mr={{ base: "0", lg: "1" }} mt={2} onChange={typinghandler} value={newMessage} onFocus={() => focus()} onBlur={() => blur()} />
+                                    bg="white" ml={{ base: "1", md: "0" }} mr={{ base: "0", lg: "1" }} mt={2} onChange={typinghandler} value={newMessage}  />
                             </FormControl>
                             <IconButton aria-label='Send Message' type='submit' display={{ base: "block", lg: "none" }} w={1} size={"sm"} mt={2}
                                 _focus={{ boxShadow: "none" }} height={"9"} icon={<ArrowForwardIcon />} outline={"none"} onClick={() => {
                                     sendmessage();
                                 }} bg="white" />
                         </Box>
+                    </Box>
                     </Box>
                     : <Box d={{ base: selectedchat.id ? "flex" : "none", md: "flex" }} flexDirection="column" width={{ base: "100%", md: "60%" }} minHeight={"100%"} bg={"gray.200"} justifyContent={"center"} alignItems={"center"} p={2}>
                         <Text fontSize={{ md: "2xl", lg: "3xl" }} fontWeight={"bold"} color={"GrayText"}>Select any chat to start chating</Text>
