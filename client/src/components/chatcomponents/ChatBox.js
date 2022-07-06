@@ -110,7 +110,7 @@ const ChatBox = () => {
                         width={{ base: "100%", md: "60%" }} height={{base:"100%",lg: "100%" }} position={"relative"} overflow={"hidden"}
                         bg={"gray.200"}>
                         <Box width={"100%"} minHeight={{ base: "7vh", lg: "8vh" }} bg={"gray.100"} display="flex" alignItems={"center"}
-                            pt={2} pb={2} top="0" zIndex={"5"} position={{base:"fixed",lg:"sticky"}}>
+                            pt={2} pb={2} top="0" zIndex={"5"} position="sticky">
                             <IconButton icon={<ArrowBackIcon />} h={9} p="0" d={{ base: "flex", lg: "none" }} size={"md"}
                                 outline={"none"}
                                 onClick={() => setSelectedChat({ type: "changechat", payload: null })} />
