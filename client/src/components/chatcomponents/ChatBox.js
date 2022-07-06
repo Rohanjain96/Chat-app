@@ -107,7 +107,7 @@ const ChatBox = () => {
             {
                 selectedchat.chat ?
                     <Box d={{ base: selectedchat ? "flex" : "none", md: "flex" }} flexDirection="column"
-                        width={{ base: "100%", md: "60%" }} height={{base:"98%",lg: "100%" }} position={"relative"} overflow={"hidden"}
+                        width={{ base: "100%", md: "60%" }} height={{base:"100vh",lg: "100%" }} position={"relative"} overflow={"hidden"}
                         bg={"gray.200"}>
                         <Box width={"100%"} minHeight={{ base: "7vh", lg: "8vh" }} bg={"gray.100"} display="flex" alignItems={"center"}
                             pt={2} pb={2} top="0" zIndex={"5"} position="sticky">
@@ -126,7 +126,7 @@ const ChatBox = () => {
                         <Box w={"100%"} height={{ base: `${height}`, lg: "86vh" }} mb={1} zIndex={2} position="relative">
                             {
                                 loading ?
-                                    <Stack display={"flex"} justifyContent={"center"} alignItems={"center"} width={"100%"} h={"100%"} bg="white" mb={2}>
+                                    <Stack display={"flex"} justifyContent={"center"} alignItems={"center"} width={"100%"} h={"100%"} bg="whitealpha.100" mb={2}>
                                         <Spinner size='xl' />
                                     </Stack>
                                     :
