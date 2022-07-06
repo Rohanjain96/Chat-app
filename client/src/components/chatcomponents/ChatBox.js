@@ -62,7 +62,7 @@ const ChatBox = () => {
     const blur = () => setHeight("78vh")
 
     useEffect(() => {
-        setHeight("82vh")
+        setHeight("84vh")
         selectedchatcompare.current = selectedchat;
     }, [])
 
@@ -107,7 +107,7 @@ const ChatBox = () => {
             {
                 selectedchat.chat ?
                     <Box d={{ base: selectedchat ? "flex" : "none", md: "flex" }} flexDirection="column"
-                        width={{ base: "100%", md: "60%" }} height={{base:"100vh",lg: "100%" }} position={"relative"} overflow={"hidden"}
+                        width={{ base: "100%", md: "60%" }} height={{base:"100%",lg: "100%" }} position={"relative"} overflow={"hidden"}
                         bg={"gray.200"}>
                         <Box width={"100%"} minHeight={{ base: "7vh", lg: "8vh" }} bg={"gray.100"} display="flex" alignItems={"center"}
                             pt={2} pb={2} top="0" zIndex={"5"} position="sticky">
@@ -159,7 +159,7 @@ const ChatBox = () => {
                                     sendmessage();
                                 }} bg="white" />
                         </Box>
-                    </Box>
+                     </Box>
                     </Box>
                     : <Box d={{ base: selectedchat.id ? "flex" : "none", md: "flex" }} flexDirection="column" width={{ base: "100%", md: "60%" }} minHeight={"100%"} bg={"gray.200"} justifyContent={"center"} alignItems={"center"} p={2}>
                         <Text fontSize={{ md: "2xl", lg: "3xl" }} fontWeight={"bold"} color={"GrayText"}>Select any chat to start chating</Text>
