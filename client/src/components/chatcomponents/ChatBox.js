@@ -62,7 +62,7 @@ const ChatBox = () => {
     const blur = () => setHeight("78vh")
 
     useEffect(() => {
-        setHeight("93vh")
+        setHeight("90vh")
         selectedchatcompare.current = selectedchat;
     }, [])
 
@@ -108,7 +108,7 @@ const ChatBox = () => {
                 selectedchat.chat ?
                     <Box d={{ base: selectedchat ? "flex" : "none", md: "flex" }} flexDirection="column"
                         width={{ base: "100%", md: "60%" }} height={"100%"} position={"relative"} overflow={"hidden"}
-                        bg={"gray.200"} pl={{ base: 0, lg: 2 }} pb={2}>
+                        bg={"gray.200"} pl={{ base: 0, lg: 2 }}>
                         <Box width={"100%"} minHeight={{ base: "7vh", lg: "8vh" }} bg={"gray.100"} display="flex" alignItems={"center"}
                             pt={2} pb={2} top="0" zIndex={"5"} position="sticky">
                             <IconButton icon={<ArrowBackIcon />} h={9} p="0" d={{ base: "flex", lg: "none" }} size={"md"}
@@ -123,14 +123,14 @@ const ChatBox = () => {
                                 </Text>
                             </Box>
                         </Box>
-                        <Box w={"100%"} height={{ base: `${height}`, lg: "79vh" }} mb={1} zIndex={2} position="relative">
+                        <Box w={"100%"} height={{ base: `${height}`, lg: "86vh" }} mb={1} zIndex={2} position="relative">
                             {
                                 loading ?
                                     <Stack display={"flex"} justifyContent={"center"} alignItems={"center"} width={"100%"} h={"100%"} bg="white" mb={2}>
                                         <Spinner size='xl' />
                                     </Stack>
                                     :
-                                    <Box width={"100%"} h={{ base: "87vh", lg: "100%" }} bg="white" mb={2} overflowY={"auto"} p={6} id="Chatbox">
+                                    <Box width={"100%"} h={{ base: "85vh", lg: "100%" }} bg="whitealpha.100" mb={2} overflowY={"auto"} p={6} id="Chatbox">
                                         {
                                             fetchedmessages !== undefined && fetchedmessages.map((message, index) => {
                                                 return (
