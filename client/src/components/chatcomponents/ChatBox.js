@@ -107,7 +107,7 @@ const ChatBox = () => {
             {
                 selectedchat.chat ?
                     <Box d={{ base: selectedchat ? "flex" : "none", md: "flex" }} flexDirection="column"
-                        width={{ base: "100%", md: "60%" }} minHeight={"100%"} position={"relative"} overflow={"hidden"}
+                        width={{ base: "100%", md: "60%" }} height={"100%"} position={"relative"} overflow={"hidden"}
                         bg={"gray.200"} pl={{ base: 0, lg: 2 }} pb={2}>
                         <Box width={"100%"} minHeight={{ base: "7vh", lg: "8vh" }} bg={"gray.100"} display="flex" alignItems={"center"}
                             pt={2} pb={2} top="0" zIndex={"5"} position="sticky">
