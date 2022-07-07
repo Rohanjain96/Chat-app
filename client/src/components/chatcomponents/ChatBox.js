@@ -59,7 +59,7 @@ const ChatBox = () => {
         }
     }
     const focus = () => setHeight("60vh")
-    const blur = () => setHeight("78vh")
+    const blur = () => setHeight("84vh")
 
     useEffect(() => {
         setHeight("84vh")
@@ -107,7 +107,7 @@ const ChatBox = () => {
             {
                 selectedchat.chat ?
                     <Box d={{ base: selectedchat ? "flex" : "none", md: "flex" }} flexDirection="column"
-                        width={{ base: "100%", md: "60%" }} height={{base:"99%",lg: "100%" }} position={"relative"} overflow={"hidden"}
+                        width={{ base: "100%", md: "60%" }} height={{base:"100%",lg: "100%" }} position={"relative"} overflow={"hidden"}
                         bg={"gray.200"}>
                         <Box width={"100%"} minHeight={{ base: "7vh", lg: "8vh" }} bg={"gray.100"} display="flex" alignItems={"center"}
                             pt={2} pb={2} top="0" zIndex={"5"} position="sticky">
@@ -123,7 +123,7 @@ const ChatBox = () => {
                                 </Text>
                             </Box>
                         </Box>
-                        <Box w={"100%"} minheight={{ base: `${height}`, lg: "86vh" }} mb={1} zIndex={2} position="relative">
+                        <Box w={"100%"} height={{ base: `${height}`, lg: "86vh" }} mb={1} zIndex={2} position="relative">
                             {
                                 loading ?
                                     <Stack display={"flex"} justifyContent={"center"} alignItems={"center"} width={"100%"} h={"100%"} bg="whitealpha.100" mb={2}>
@@ -152,7 +152,7 @@ const ChatBox = () => {
                         <Box display={"flex"} w={"99%"} h={"40px"} alignItems={"center"} position="absolute" bottom={{ base: "2px", lg: "6px" }}>
                             <FormControl display={"flex"} onKeyDown={typinghandler} w={{ base: "95%", lg: "99%" }}>
                                 <Input w={{ base: "100%", lg: "100%" }} autoComplete="disabled" fontSize={"sm"} h={"9"} placeholder=''
-                                    bg="white" ml={{ base: "1", md: "2" }} mr={{ base: "0", lg: "2" }} mt={2} onChange={typinghandler} value={newMessage}  />
+                                    bg="white" ml={{ base: "1", md: "2" }} mr={{ base: "0", lg: "2" }} mt={2} onChange={typinghandler} value={newMessage} onFocus={()=>focus} onBlur={()=>blur} />
                             </FormControl>
                             <IconButton aria-label='Send Message' type='submit' display={{ base: "block", lg: "none" }} w={1} size={"sm"} mt={2}
                                 _focus={{ boxShadow: "none" }} height={"9"} icon={<ArrowForwardIcon />} outline={"none"} onClick={() => {
