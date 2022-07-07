@@ -2,6 +2,7 @@ const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const { generateauthtoken } = require("../config/generateAuthtoken.js");
+const { response } = require("express");
 const login = async (req, res) => {
     try {
         const { phonenumber, password } = req.body;
@@ -121,6 +122,10 @@ const checkcookie = async (req, res) => {
     data = await User.findById(decoded.userId).select("-password");
     res.json(data);
     }
+
+    else response.status(200).json()
+
+
 }
 const removecookie = async (req, res) => {
     res.clearCookie('jwtoken', { credentials: "same-origin" })
