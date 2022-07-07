@@ -129,7 +129,7 @@ const checkcookie = async (req, res) => {
 const removecookie = (req, res) => {
     // res.clearCookie('jwtoken',{domain:"mern-chatify123.herokkuapp.com",path:"/"})
     res.cookie("jwtoken", "", {
-        expires: new Date(Date.now()), httpOnly: false
+        expires: new Date(0), httpOnly: false
     });
     res.status(200).json("cookie cleared")
 }
