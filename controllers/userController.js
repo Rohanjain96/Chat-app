@@ -116,12 +116,10 @@ const register = async (req, res) => {
 const checkcookie = async (req, res) => {
     let token = req.cookies.jwtoken;
     console.log(token);
-    if (token == undefined)
-        return;
-    else{
-        const decoded = jwt.verify(token, process.env.Secret_key);
-        data = await User.findById(decoded.userId).select("-password");
-        res.json(data);
+    if (token !== undefined){
+    const decoded = jwt.verify(token, process.env.Secret_key);
+    data = await User.findById(decoded.userId).select("-password");
+    res.json(data);
     }
 }
 const removecookie = async (req, res) => {
