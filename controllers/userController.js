@@ -123,7 +123,7 @@ const checkcookie = async (req, res) => {
     res.json(data);
     }
 
-    else response.status(200).json()
+    else response.status(200).json();
 
 
 }
