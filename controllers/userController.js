@@ -115,6 +115,7 @@ const register = async (req, res) => {
 
 const checkcookie = async (req, res) => {
     let token = req.cookies.jwtoken;
+    console.log(token);
     if (token == undefined)
         return;
     else{
