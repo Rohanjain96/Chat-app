@@ -136,7 +136,7 @@ const ChatBox = () => {
                                                 return (
                                                     <Box w={"100%"} display={"flex"} justifyContent={message.sender._id === user.user._id ? "right" : "left"}
                                                         key={message._id} pb={2}>
-                                                        <Box borderRadius={"5px"} bg={message.sender._id !== user.user._id ? "#BEE3F8" : "green.100"} maxW={"40%"} p={2}>
+                                                        <Box borderRadius={"5px"} bg={message.sender._id !== user.user._id ? "#BEE3F8" : "green.200"} maxW={"40%"} p={2}>
                                                             {selectedchat.chat.isGroupChat ? <Text fontWeight={"bold"} >{(getSenderName(fetchedmessages, index, user))}</Text> : ""}
                                                             <Text textAlign={"end"}
                                                                 fontWeight={"normal"} mb={1} color="white">
