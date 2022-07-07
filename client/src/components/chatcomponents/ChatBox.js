@@ -58,11 +58,11 @@ const ChatBox = () => {
             sendmessage()
         }
     }
-    const focus = () => setHeight("60vh")
-    const blur = () => setHeight("78vh")
+    const focus = () => setHeight("50vh")
+    const blur = () => setHeight("86vh")
 
     useEffect(() => {
-        setHeight("84vh")
+        setHeight("86vh")
         selectedchatcompare.current = selectedchat;
     }, [])
 
@@ -110,7 +110,7 @@ const ChatBox = () => {
                         width={{ base: "100%", md: "60%" }} height={{base:"100%",lg: "100%" }} position={"relative"} overflow={"hidden"}
                         bg={"gray.200"}>
                         <Box width={"100%"} minHeight={{ base: "7vh", lg: "8vh" }} bg={"gray.100"} display="flex" alignItems={"center"}
-                            pt={2} pb={2} top="0" zIndex={"5"} position="sticky">
+                            pt={2} pb={2} top="0" zIndex={"5"} position={{base:"fixed",lg:"sticky"}}>
                             <IconButton icon={<ArrowBackIcon />} h={9} p="0" d={{ base: "flex", lg: "none" }} size={"md"}
                                 outline={"none"}
                                 onClick={() => setSelectedChat({ type: "changechat", payload: null })} />
@@ -123,14 +123,14 @@ const ChatBox = () => {
                                 </Text>
                             </Box>
                         </Box>
-                        <Box w={"100%"} height={{ base: `${height}`, lg: "86vh" }} mb={1} zIndex={2} position="relative">
+                        <Box w={"100%"} height={{ base: `${height}`, lg: "86vh" }} mt={{base:"7vh",lg:"0"}} mb={1} zIndex={2} position="relative">
                             {
                                 loading ?
                                     <Stack display={"flex"} justifyContent={"center"} alignItems={"center"} width={"100%"} h={"100%"} bg="whitealpha.100" mb={2}>
                                         <Spinner size='xl' />
                                     </Stack>
                                     :
-                                    <Box width={"100%"} h={{ base: "97%", lg: "98%" }} bg="whitealpha.100" mb={2} overflowY={"auto"} p={6} id="Chatbox">
+                                    <Box width={"100%"} h={{ base: "80vh", lg: "98%" }} bg="whitealpha.100" mb={2} overflowY={"auto"} p={6} id="Chatbox">
                                         {
                                             fetchedmessages !== undefined && fetchedmessages.map((message, index) => {
                                                 return (
