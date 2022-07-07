@@ -59,10 +59,10 @@ const ChatBox = () => {
         }
     }
     const focus = () => setHeight("50vh")
-    const blur = () => setHeight("86vh")
+    const blur = () => setHeight("70vh")
 
     useEffect(() => {
-        setHeight("86vh")
+        setHeight("70vh")
         selectedchatcompare.current = selectedchat;
     }, [])
 
@@ -130,7 +130,7 @@ const ChatBox = () => {
                                         <Spinner size='xl' />
                                     </Stack>
                                     :
-                                    <Box width={"100%"} h={{ base: "80vh", lg: "98%" }} bg="whitealpha.100" mb={2} overflowY={"auto"} p={6} id="Chatbox">
+                                    <Box width={"100%"} h={{ base: "95%", lg: "98%" }} bg="whitealpha.100" mb={2} overflowY={"auto"} p={6} id="Chatbox">
                                         {
                                             fetchedmessages !== undefined && fetchedmessages.map((message, index) => {
                                                 return (
