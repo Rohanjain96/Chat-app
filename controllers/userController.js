@@ -117,9 +117,11 @@ const checkcookie = async (req, res) => {
     let token = req.cookies.jwtoken;
     if (token == undefined)
         return;
-    const decoded = jwt.verify(token, process.env.Secret_key);
-    data = await User.findById(decoded.userId).select("-password");
-    res.json(data);
+    else{
+        const decoded = jwt.verify(token, process.env.Secret_key);
+        data = await User.findById(decoded.userId).select("-password");
+        res.json(data);
+    }
 }
 const removecookie = async (req, res) => {
     res.clearCookie('jwtoken', { credentials: "same-origin" })
