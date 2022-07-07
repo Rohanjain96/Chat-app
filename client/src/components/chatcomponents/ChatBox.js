@@ -107,7 +107,7 @@ const ChatBox = () => {
             {
                 selectedchat.chat ?
                     <Box d={{ base: selectedchat ? "flex" : "none", md: "flex" }} flexDirection="column"
-                        width={{ base: "100%", md: "60%" }} height={{base:"100%",lg: "100%" }} position={"relative"} overflow={"hidden"}
+                        width={{ base: "100%", md: "60%" }} height={{base:"99%",lg: "100%" }} position={"relative"} overflow={"hidden"}
                         bg={"gray.200"}>
                         <Box width={"100%"} minHeight={{ base: "7vh", lg: "8vh" }} bg={"gray.100"} display="flex" alignItems={"center"}
                             pt={2} pb={2} top="0" zIndex={"5"} position="sticky">
@@ -123,7 +123,7 @@ const ChatBox = () => {
                                 </Text>
                             </Box>
                         </Box>
-                        <Box w={"100%"} height={{ base: `${height}`, lg: "86vh" }} mb={1} zIndex={2} position="relative">
+                        <Box w={"100%"} minheight={{ base: `${height}`, lg: "86vh" }} mb={1} zIndex={2} position="relative">
                             {
                                 loading ?
                                     <Stack display={"flex"} justifyContent={"center"} alignItems={"center"} width={"100%"} h={"100%"} bg="whitealpha.100" mb={2}>
