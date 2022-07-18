@@ -14,6 +14,6 @@ router.get("/allusers", protect, getAllUser);
 
 router.get("/checkcookie", checkcookie);
 
-router.get("/removecookie", removecookie);
+router.get("/removecookie", protect, removecookie);
 
 module.exports = router;
