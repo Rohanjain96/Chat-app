@@ -42,7 +42,7 @@ const Mychats = () => {
 
   const clearCookie = () => {
     try {
-      const { data } =  axios.get("/api/chats/removecookie",{ withCredentials: true, credentials: "include" });
+      const { data } =  axios.get("/api/chats/removecookie",{ credentials: "include" });
       navigate("/", { replace: true });
     } catch (error) {
       toast({
