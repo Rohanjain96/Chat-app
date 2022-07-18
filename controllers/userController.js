@@ -18,7 +18,7 @@ const login = async (req, res) => {
             res.cookie("jwtoken", token, {
                 expires: new Date(Date
                     .now() + 2592000000), httpOnly: false,
-                    domain:".herokuapp.com",path:"/"
+                    domain:"herokuapp.com",path:"/"
             });
             // globaltoken = token;
             res.json({
@@ -115,7 +115,7 @@ const checkcookie = async (req, res) => {
 
 }
 const removecookie = (req, res) => {
-    // res.clearCookie('jwtoken',{domain:"mern-chatify123.herokkuapp.com",path:"/"})
+    res.clearCookie('jwtoken',{domain:"herokuapp.com",path:"/"})
     res.cookie("jwtoken", "", {
         expires: new Date(0), httpOnly: false
     });
