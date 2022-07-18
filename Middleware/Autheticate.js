@@ -6,7 +6,7 @@ const protect = async (req, res, next) => {
   let token = req.cookies.jwtoken
 
   if (token) {
-    // token = globaltoken
+
 
       //decodes token id
       const decoded = jwt.verify(token,process.env.Secret_key);

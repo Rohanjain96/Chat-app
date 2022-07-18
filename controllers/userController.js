@@ -2,7 +2,6 @@ const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const { generateauthtoken } = require("../config/generateAuthtoken.js");
-const { response } = require("express");
 const login = async (req, res) => {
     try {
         const { phonenumber, password } = req.body;
@@ -18,7 +17,8 @@ const login = async (req, res) => {
             const token = generateauthtoken(user._id);
             res.cookie("jwtoken", token, {
                 expires: new Date(Date
-                    .now() + 2592000000), httpOnly: false
+                    .now() + 2592000000), httpOnly: false,
+                    domain:".herokuapp.com",path:"/"
             });
             // globaltoken = token;
             res.json({
@@ -101,18 +101,6 @@ const register = async (req, res) => {
 
 }
 
-// const getUser = async (req, res) => {
-//     const {token} = req.body
-//     globaltoken = token
-//     if(token)
-//     {
-//         const decoded = jwt.verify(token, process.env.Secret_key);
-//         const data = await User.findById(decoded.userId).select("-password");
-//         res.json(data);
-//     }
-
-//     else return
-// }
 
 const checkcookie = async (req, res) => {
     let token = req.cookies.jwtoken;
