@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { Heading, useToast } from '@chakra-ui/react'
 import { Chatstate } from '../../context/ChatProvider';
 import "../../pages/homepage/homepage.css"
-import Cookies from 'js-cookie'
 // login page
 const Login = () => {
     const [phonenumber, setPhonenumber] = useState("");

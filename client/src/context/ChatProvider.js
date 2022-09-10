@@ -42,8 +42,6 @@ const chatreducer = (state,action)=>{
 const ChatContext = createContext();
 const ChatProvider = ({children}) => {
     const [selectedchat, dispatch] = useReducer(reducer, isstate )
-    // const [user,setUser] = useState("");
-    // const [chats,setChats] = useState([]);
     const [chats,chatdispatch] = useReducer(chatreducer, chatstate)
     const [user,userdispatch] = useReducer(userreducer, userstate)
     const [fetchagain,setFetchAgain] = useState(false)

@@ -18,9 +18,8 @@ const login = async (req, res) => {
             res.cookie("jwtoken", token, {
                 expires: new Date(Date
                     .now() + 2592000000), httpOnly: false,
-                    domain:".mern-chatify123.herokuapp.com",path:"/"
+                    path:"/",domain:".mern-chatify123.herokuapp.com"
             });
-            // globaltoken = token;
             res.json({
                 _id: user._id,
                 name: user.name,
@@ -40,7 +39,6 @@ const login = async (req, res) => {
 
 const getAllUser = async (req, res) => {
     let keyword;
-    // const {user} = req.body
     if (!req.query.search) {
         keyword = {};
     }
@@ -78,7 +76,6 @@ const register = async (req, res) => {
             expires: new Date(Date
                 .now() + 2592000000), httpOnly: false
         });
-        // globaltoken = token;
 
         if (user) {
             res.json(
@@ -115,7 +112,7 @@ const checkcookie = async (req, res) => {
 
 }
 const removecookie = (req, res) => {
-    res.clearCookie('jwtoken',{domain:".mern-chatify123.herokuapp.com",path:"/"})
+    res.clearCookie('jwtoken',{path:"/",domain:".mern-chatify123.herokuapp.com"})
     res.status(200).json("cookie cleared")
 }
 
