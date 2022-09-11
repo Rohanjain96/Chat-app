@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Login from "../../components/Authentication/Login";
 import Register from '../../components/Authentication/Register';
-import { Heading, Spinner, useToast } from "@chakra-ui/react";
+import { Box, Center, Heading, Spinner, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { Chatstate } from "../../context/ChatProvider";
 
@@ -50,9 +50,11 @@ const Homepage = () => {
     <>
     {
       loading?
-      <div className="wrapper">
-        <Spinner size='xl' />
-      </div>
+      <Center h={"100vh"}>
+      <Box display={"flex"} justifyContent={"center"} alignItems={"center"} width={"100%"} h={"100%"}>
+        <Spinner size='xl'  />
+      </Box>
+      </Center>
       :user.user?
       <div className="wrapper">
         <div className={setclass} id="container">

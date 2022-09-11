@@ -73,8 +73,8 @@ const ChatBox = () => {
             const message = { content: newMessage, chatId: selectedchat.chat._id }
             const { data } = await axios.post("/api/messages/sendmessage",
                 message, { withCredentials: true, credentials: "include" })
-            socket.emit("sendMessage", data)
             setNewMessage("");
+            socket.emit("sendMessage", data)
             setFetchedMessages([...fetchedmessages, data])
             setFetchAgain(true)
             scrolltobottom()
@@ -152,7 +152,7 @@ const ChatBox = () => {
                         <Box display={"flex"} w={"99%"} h={"40px"} alignItems={"center"} position="absolute" bottom={{ base: "2px", lg: "6px" }}>
                             <FormControl display={"flex"} onKeyDown={typinghandler} w={{ base: "95%", lg: "99%" }}>
                                 <Input w={{ base: "100%", lg: "100%" }} autoComplete="disabled" fontSize={"sm"} h={"9"} placeholder=''
-                                    bg="white" ml={{ base: "1", md: "2" }} mr={{ base: "0", lg: "2" }} mt={2} onChange={typinghandler} value={newMessage} onFocus={()=>focus} onBlur={()=>blur} />
+                                    bg="white" ml={{ base: "1", md: "2" }} mr={{ base: "0", lg: "1" }} mt={2} onChange={typinghandler} value={newMessage} onFocus={()=>focus} onBlur={()=>blur} />
                             </FormControl>
                             <IconButton aria-label='Send Message' type='submit' display={{ base: "block", lg: "none" }} w={1} size={"sm"} mt={2}
                                 _focus={{ boxShadow: "none" }} height={"9"} icon={<ArrowForwardIcon />} outline={"none"} onClick={() => {

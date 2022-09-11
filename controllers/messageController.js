@@ -1,6 +1,7 @@
 const Chat = require("../models/chatModel");
 const Message = require("../models/messageModel");
 const User = require("../models/userModel");
+const CryptoJS = require("crypto-js")
 const sendMessage = async(req,res)=>{
     
     const {content, chatId} = req.body;
@@ -8,9 +9,10 @@ const sendMessage = async(req,res)=>{
     {
         res.json("Invalid data passed");
     }
+    const encryptedmessagecontent = CryptoJS.AES.encrypt(content,"mysecretkey").toString();
     try {
         var newmessage = await Message.create({
-            content:content,
+            content:encryptedmessagecontent,
             chat:chatId,
             sender:req.user._id
         });
@@ -30,10 +32,16 @@ const sendMessage = async(req,res)=>{
 const getMessages = async(req,res)=>{
     const chatId = req.params.chatId;
     try {
-        const messages = await Message.find({chat:chatId}).populate("sender","name pic email phonenumber").populate("chat");
+        let messages = await Message.find({chat:chatId}).populate("sender","name pic email phonenumber").populate("chat").lean();
+        messages = messages.map(message=>{
+            var bytes  = CryptoJS.AES.decrypt(message.content, 'mysecretkey');
+            var originalText = bytes.toString(CryptoJS.enc.Utf8);
+            return({...message,content:originalText})
+        })
         res.json(messages);
     } catch (error) {
         res.status(400).json(error.message);
     }
 }
+
 module.exports = {sendMessage, getMessages};
