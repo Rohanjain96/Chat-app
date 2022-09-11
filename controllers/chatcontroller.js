@@ -52,8 +52,11 @@ const fetchChats = async (req, res) => {
     }
     console.log("before:",chats)
     chats = chats.map(chat=>{
-      var bytes  = CryptoJS.AES.decrypt(chat.latestMessage.content, 'mysecretkey');
+      var content = chat.latestMessage.content;
+      console.log("before content:",content);
+      var bytes  = CryptoJS.AES.decrypt(content, 'mysecretkey');
       var originalText = bytes.toString(CryptoJS.enc.Utf8);
+      console.log("after content:",originalText);
       var newMessage = {...chat.latestMessage,content: originalText}
       console.log("latest message:",newMessage);
       return({...chat,latestMessage:newMessage})
