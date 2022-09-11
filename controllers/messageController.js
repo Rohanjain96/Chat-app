@@ -25,10 +25,12 @@ const sendMessage = async(req,res)=>{
         await Chat.findByIdAndUpdate(chatId,{latestMessage:newmessage});
         var bytes  = CryptoJS.AES.decrypt(newmessage.content, 'mysecretkey');
         var originalText = bytes.toString(CryptoJS.enc.Utf8);
-        newmessage.lean();
-        newmessage = {...newmessage,content:originalText}
+
         console.log("newmessage:",newmessage);
-        res.json(newmessage);
+        let message = await Message.findById({_id:newmessage._id}).lean()
+        message = {...message,content:originalText}
+        console.log("message:",message);
+        res.json(message);
     } catch (error) {
         res.status(401).json(error.Message);
     }
