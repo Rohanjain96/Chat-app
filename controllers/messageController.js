@@ -23,6 +23,9 @@ const sendMessage = async(req,res)=>{
             select:"name pic email phonenumber"
         });
         await Chat.findByIdAndUpdate(chatId,{latestMessage:newmessage});
+        var bytes  = CryptoJS.AES.decrypt(newmessage.content, 'mysecretkey');
+        var originalText = bytes.toString(CryptoJS.enc.Utf8);
+        newmessage = {...newmessage,content:originalText}
         res.json(newmessage);
     } catch (error) {
         res.status(401).json(error.Message);

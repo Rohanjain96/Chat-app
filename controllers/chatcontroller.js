@@ -37,8 +37,6 @@ const accessChat = async (req, res) => {
 };
 
 const fetchChats = async (req, res) => {
-  // const { UserId } = req.body
-  // console.log("users is:", UserId);
   try {
     var chats = await Chat.find({
       users: { $elemMatch: { $eq: req.user._id } }
@@ -52,6 +50,11 @@ const fetchChats = async (req, res) => {
     for (let i = 0; i < chats.length; i++) {
       chats[i].notificationcount = 0;
     }
+    chats = chats.map(chat=>{
+      var bytes  = CryptoJS.AES.decrypt(chat.latestMessage, 'mysecretkey');
+      var originalText = bytes.toString(CryptoJS.enc.Utf8);
+      return({...chat,latestMessage:originalText})
+  })
     res.json(chats);
   } catch (error) {
     res.status(400).json(error.message);
