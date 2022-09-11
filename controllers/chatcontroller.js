@@ -50,15 +50,15 @@ const fetchChats = async (req, res) => {
     for (let i = 0; i < chats.length; i++) {
       chats[i].notificationcount = 0;
     }
-    console.log(chats)
+    console.log("before:",chats)
     chats = chats.map(chat=>{
       var bytes  = CryptoJS.AES.decrypt(chat.latestMessage.content, 'mysecretkey');
       var originalText = bytes.toString(CryptoJS.enc.Utf8);
-      var latestMessage = {...chat.latestMessage,content: originalText}
-      console.log("latest message:",latestMessage);
-      return({...chat,latestMessage:latestMessage})
+      var newMessage = {...chat.latestMessage,content: originalText}
+      console.log("latest message:",newMessage);
+      return({...chat,latestMessage:newMessage})
     })
-    console.log(chats)
+    console.log("after:",chats)
     res.json(chats);
   } catch (error) {
     res.status(400).json(error.message);
