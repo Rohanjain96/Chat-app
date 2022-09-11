@@ -52,6 +52,7 @@ const fetchChats = async (req, res) => {
       let content = chats[i].latestMessage.content
       let bytes  = CryptoJS.AES.decrypt(content, 'mysecretkey');
       let originalText = bytes.toString(CryptoJS.enc.Utf8);
+      console.log(originalText);
       chats[i].latestMessage.content = originalText;
     }
     // console.log("before:",chats)
@@ -65,7 +66,7 @@ const fetchChats = async (req, res) => {
     //   console.log("latest message:",newMessage);
     //   return({...chat,latestMessage:newMessage})
     // })
-    // console.log("after:",chats)
+    console.log("after:",chats)
     res.json(chats);
   } catch (error) {
     res.status(400).json(error.message);
