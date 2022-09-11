@@ -1,7 +1,7 @@
 const Chat = require("../models/chatModel");
 const User = require("../models/userModel");
-// const CryptoJS = require("crypto-js")
-import {CryptoJS} from "crypto-js";
+const CryptoJS = require("crypto-js")
+// import {CryptoJS} from "crypto-js";
 const accessChat = async (req, res) => {
   const { userId, pic } = req.body;
   if (!userId) {
@@ -57,7 +57,9 @@ const fetchChats = async (req, res) => {
       var bytes  = CryptoJS.AES.decrypt(content, 'mysecretkey');
       var originalText = bytes.toString(CryptoJS.enc.Utf8);
       console.log("orignal text:",originalText);
+      if(chats[i].latestMessage.content) 
       chats[i].latestMessage.content = originalText;
+      else continue
     }
     console.log("chats:",chats);
     // console.log("before:",chats)
