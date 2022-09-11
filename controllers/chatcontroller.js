@@ -1,7 +1,7 @@
 const Chat = require("../models/chatModel");
 const User = require("../models/userModel");
 // const CryptoJS = require("crypto-js")
-import CryptoJS from "crypto-js";
+import {CryptoJS} from "crypto-js";
 const accessChat = async (req, res) => {
   const { userId, pic } = req.body;
   if (!userId) {
