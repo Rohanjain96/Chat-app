@@ -49,13 +49,13 @@ const fetchChats = async (req, res) => {
 
     for (let i = 0; i < chats.length; i++) {
       chats[i].notificationcount = 0;
-      let content = chats[i].latestMessage.content
+      // let content = chats[i].latestMessage.content
       
-      console.log("latest content:",content);
-      var bytes  = CryptoJS.AES.decrypt(content, 'mysecretkey');
-      var originalText = bytes.toString(CryptoJS.enc.Utf8);
-      console.log("orignal text:",originalText);
-      chats[i].latestMessage.content = originalText;
+      // console.log("latest content:",content);
+      // var bytes  = CryptoJS.AES.decrypt(content, 'mysecretkey');
+      // var originalText = bytes.toString(CryptoJS.enc.Utf8);
+      // console.log("orignal text:",originalText);
+      // chats[i].latestMessage.content = originalText;
     }
     // console.log("before:",chats)
     // chats = chats.map(chat=>{
