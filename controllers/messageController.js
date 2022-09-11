@@ -27,7 +27,7 @@ const sendMessage = async(req,res)=>{
         var originalText = bytes.toString(CryptoJS.enc.Utf8);
 
         console.log("newmessage:",newmessage);
-        let message = {...newmessage}
+        let message = await Message.findById({_id:newmessage._id}).populate("chat").populate("sender", "name pic email")
         message = {...message,content:originalText}
         console.log("message:",message);
         res.json(message);
