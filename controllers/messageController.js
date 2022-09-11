@@ -21,15 +21,16 @@ const sendMessage = async(req,res)=>{
         newmessage = await User.populate(newmessage,{
             path:"chat.users",
             select:"name pic email phonenumber"
-        }).lean();
+        });
         await Chat.findByIdAndUpdate(chatId,{latestMessage:newmessage});
         var bytes  = CryptoJS.AES.decrypt(newmessage.content, 'mysecretkey');
         var originalText = bytes.toString(CryptoJS.enc.Utf8);
 
         console.log("newmessage:",newmessage);
-        newmessage = {...newmessage,content:originalText}
-        console.log("message:",newmessage);
-        res.json(newmessage);
+        let message = {...newmessage}
+        message = {...message,content:originalText}
+        console.log("message:",message);
+        res.json(message);
     } catch (error) {
         res.status(401).json(error.Message);
     }
