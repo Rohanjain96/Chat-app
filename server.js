@@ -50,6 +50,7 @@ io.on("connection", (socket) => {
   })
 
   socket.on("sendMessage", (message) => {
+    console.log("socket message:",message);
     message.chat.users.forEach((user) => {
       if (user._id === message.sender._id) return;
       socket.in(user._id).emit("recievedMessage", message)

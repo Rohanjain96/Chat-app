@@ -26,6 +26,7 @@ const sendMessage = async(req,res)=>{
         var bytes  = CryptoJS.AES.decrypt(newmessage.content, 'mysecretkey');
         var originalText = bytes.toString(CryptoJS.enc.Utf8);
         newmessage = {...newmessage,content:originalText}
+        console.log("newmessage:",newmessage);
         res.json(newmessage);
     } catch (error) {
         res.status(401).json(error.Message);
