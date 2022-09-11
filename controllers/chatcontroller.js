@@ -49,19 +49,23 @@ const fetchChats = async (req, res) => {
 
     for (let i = 0; i < chats.length; i++) {
       chats[i].notificationcount = 0;
+      let content = chats[i].latestMessage.content
+      let bytes  = CryptoJS.AES.decrypt(content, 'mysecretkey');
+      let originalText = bytes.toString(CryptoJS.enc.Utf8);
+      chats[i].latestMessage.content = originalText;
     }
-    console.log("before:",chats)
-    chats = chats.map(chat=>{
-      var content = chat.latestMessage.content;
-      console.log("before content:",content);
-      var bytes  = CryptoJS.AES.decrypt(content, 'mysecretkey');
-      var originalText = bytes.toString(CryptoJS.enc.Utf8);
-      console.log("after content:",originalText);
-      var newMessage = {...chat.latestMessage,content: originalText}
-      console.log("latest message:",newMessage);
-      return({...chat,latestMessage:newMessage})
-    })
-    console.log("after:",chats)
+    // console.log("before:",chats)
+    // chats = chats.map(chat=>{
+    //   var content = chat.latestMessage.content;
+    //   console.log("before content:",content);
+    //   var bytes  = CryptoJS.AES.decrypt(content, 'mysecretkey');
+    //   var originalText = bytes.toString(CryptoJS.enc.Utf8);
+    //   console.log("after content:",originalText);
+    //   var newMessage = {...chat.latestMessage,content: originalText}
+    //   console.log("latest message:",newMessage);
+    //   return({...chat,latestMessage:newMessage})
+    // })
+    // console.log("after:",chats)
     res.json(chats);
   } catch (error) {
     res.status(400).json(error.message);
