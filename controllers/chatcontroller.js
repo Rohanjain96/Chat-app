@@ -52,7 +52,7 @@ const fetchChats = async (req, res) => {
     for (let i = 0; i < chats.length; i++) {
       chats[i].notificationcount = 0;
       
-      if(chats[i].latestMessage.content) {
+      if(chats[i].latestMessage) {
         let content = chats[i].latestMessage.content
         console.log("latest content:",content);
         var bytes  = CryptoJS.AES.decrypt(content, 'mysecretkey');
