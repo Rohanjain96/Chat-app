@@ -1,6 +1,7 @@
 const Chat = require("../models/chatModel");
 const User = require("../models/userModel");
-const CryptoJS = require("crypto-js")
+// const CryptoJS = require("crypto-js")
+import CryptoJS from "crypto-js";
 const accessChat = async (req, res) => {
   const { userId, pic } = req.body;
   if (!userId) {
@@ -58,6 +59,7 @@ const fetchChats = async (req, res) => {
       console.log("orignal text:",originalText);
       chats[i].latestMessage.content = originalText;
     }
+    console.log("chats:",chats);
     // console.log("before:",chats)
     // chats = chats.map(chat=>{
     //   var content = chat.latestMessage.content;
