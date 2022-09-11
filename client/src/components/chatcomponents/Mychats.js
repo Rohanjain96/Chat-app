@@ -19,7 +19,7 @@ const Mychats = () => {
   const fetchchats = async () => {
     // const User = user.user
     try {
-      const { data } = await axios.post("/api/chats/fetchchats",{ withCredentials: true, credentials: "include" });
+      const { data } = await axios.get("/api/chats/fetchchats",{ withCredentials: true, credentials: "include" });
       if (data) {
         setChats({ type: "changechats", payload: [...data] });
       }
