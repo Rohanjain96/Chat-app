@@ -55,7 +55,7 @@ const fetchChats = async (req, res) => {
       var bytes  = CryptoJS.AES.decrypt(chat.latestMessage.content, 'mysecretkey');
       var originalText = bytes.toString(CryptoJS.enc.Utf8);
       var latestMessage = {...chat.latestMessage,content: originalText}
-      console.log( latestMessage);
+      console.log("latest message:",latestMessage);
       return({...chat,latestMessage:latestMessage})
     })
     console.log(chats)
