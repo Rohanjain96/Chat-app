@@ -15,7 +15,7 @@ const Homepage = () => {
 
   const checkcookie = async () => {
     try {
-      const { data } = await axios.get("/api/users/checkcookie", { withCredentials: true, credentials: "include" });
+      let { data } = await axios.get("/api/users/checkcookie", { withCredentials: true, credentials: "include" });
       console.log("Data:",data);
 
       if (data) {
