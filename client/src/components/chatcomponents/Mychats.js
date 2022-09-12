@@ -44,6 +44,7 @@ const Mychats = () => {
   const clearCookie = () => {
     try {
       const { data } =  axios.delete("/api/users/removecookie",{withCredentials: true, credentials: "include" });
+      if(data)
       navigate("/", { replace: true });
     } catch (error) {
       toast({
