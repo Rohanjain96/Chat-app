@@ -22,7 +22,6 @@ const Mychats = () => {
       const { data } = await axios.post("/api/chats/fetchchats",{ withCredentials: true, credentials: "include" });
       if (data) {
         setChats({ type: "changechats", payload: [...data] });
-        console.log(data)
       }
       setFetchAgain(false)
       setChatLoading(false)
