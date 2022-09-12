@@ -19,9 +19,9 @@ const Homepage = () => {
       console.log("Data:",data);
 
       if (data) {
-        setUser({ type: "changeuser", payload: data });
         setLoading(false)
         navigate("/chats")
+        data = null;
       }
       setLoading(false)
     }
