@@ -16,9 +16,10 @@ const Homepage = () => {
   const checkcookie = async () => {
     try {
       const { data } = await axios.get("/api/users/checkcookie", { withCredentials: true, credentials: "include" });
+      alert("check cookie")
       if (data) {
         setUser({ type: "changeuser", payload: data });
-        console.log(data);
+        console.log("im in");
         setLoading(false)
         navigate("/chats")
       }
