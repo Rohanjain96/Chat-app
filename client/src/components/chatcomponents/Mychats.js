@@ -41,10 +41,9 @@ const Mychats = () => {
   }, [fetchagain]);
 
   const clearCookie = () => {
-    try {
-      const { data } =  axios.delete("/api/users/removecookie",{withCredentials: true, credentials: "include" });
-      navigate("/", { replace: true });
-    } catch (error) {
+    axios.delete("/api/users/removecookie",{withCredentials: true, credentials: "include" })
+    .then(() => navigate("/", { replace: true }))
+    .catch ((error) => {
       toast({
         title: error.message,
         description: error.message,
@@ -52,7 +51,7 @@ const Mychats = () => {
         duration: 5000,
         isClosable: true,
       })
-    }
+    })
   }
   const capatilize = (name) => {
     return name.charAt(0).toUpperCase() + name.slice(1)
