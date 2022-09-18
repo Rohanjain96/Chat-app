@@ -9,7 +9,7 @@ import { Chatstate } from "../../context/ChatProvider";
 
 const Homepage = () => {
   const navigate = useNavigate();
-  const { user,setUser } = Chatstate()
+  const { user } = Chatstate()
   const toast = useToast()
   const [loading,setLoading] = useState(true);
 

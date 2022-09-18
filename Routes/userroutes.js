@@ -10,8 +10,6 @@ router.post("/login", login);
 
 router.get("/allusers", protect, getAllUser);
 
-// router.post("/user", getUser);
-
 router.get("/checkcookie", checkcookie);
 
 router.delete("/removecookie", protect, removecookie);

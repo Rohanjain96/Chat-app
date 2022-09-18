@@ -11,7 +11,6 @@ const chatrouter = require("./Routes/chatroutes")
 
 const app = express();
 const corsoptions = { credentials: true};
-// const corsoptions = { credentials: true, origin: "http://192.168.1.36:3000"};
 const PORT = process.env.PORT || 5000
 app.use(cors(corsoptions));
 app.use(express.json());
@@ -33,8 +32,6 @@ connection();
 const server = app.listen(PORT, () => { console.log(`listening on port:${PORT}`); })
 const io = require("socket.io")(server, {
   cors: {
-    // origin: "http://192.168.1.36:3000"
-    // origin:"localhost:3000"
   }
 })
 
