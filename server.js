@@ -48,8 +48,8 @@ io.on("connection", (socket) => {
   })
 
   socket.on("sendMessage", (message) => {
-    console.log("socket message:",message.content);
     message.chat.users.forEach((user) => {
+      console.log("socket message:",user._id);
       if (user._id === message.sender._id) return;
       socket.in(user._id).emit("recievedMessage", message)
     });
