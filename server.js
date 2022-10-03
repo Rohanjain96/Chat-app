@@ -32,7 +32,7 @@ connection();
 const server = app.listen(PORT, () => { console.log(`listening on port:${PORT}`); })
 const io = require("socket.io")(server, {
   cors: {
-    origin:"https://mern-chatify123.herokuapp.com/"
+    origin:"https://mern-chatify123.herokuapp.com"
   }
 })
 
