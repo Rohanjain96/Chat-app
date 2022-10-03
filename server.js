@@ -32,7 +32,7 @@ connection();
 const server = app.listen(PORT, () => { console.log(`listening on port:${PORT}`); })
 const io = require("socket.io")(server, {
   cors: {
-    origin:"https://mern-chatify123.herokuapp.com"
+    origin:"https://mern-chatify123.herokuapp.com/"
   }
 })
 
@@ -48,7 +48,7 @@ io.on("connection", (socket) => {
   })
 
   socket.on("sendMessage", (message) => {
-    console.log("socket message:",message);
+    console.log("socket message:",message.content);
     message.chat.users.forEach((user) => {
       if (user._id === message.sender._id) return;
       socket.in(user._id).emit("recievedMessage", message)
