@@ -73,7 +73,6 @@ const ChatBox = () => {
             const message = { content: newMessage, chatId: selectedchat.chat._id }
             const { data } = await axios.post("/api/messages/sendmessage",
                 message, { withCredentials: true, credentials: "include" })
-            console.log("send message data:",data)
             setNewMessage("");
             setFetchedMessages([...fetchedmessages, data])
             socket.emit("sendMessage", data)
@@ -92,7 +91,6 @@ const ChatBox = () => {
 
     useEffect(() => {
         socket.on("recievedMessage", (message) => {
-            console.log("recieved message",message.content)
             if (selectedchatcompare.current.chat === null || selectedchatcompare.current.chat._id !== message.chat._id) { return; }
             else {
                 setFetchedMessages([...fetchedmessages, message])
