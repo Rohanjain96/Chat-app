@@ -28,7 +28,7 @@ const sendMessage = async(req,res)=>{
 
         let message = await Message.findById({_id:newmessage._id}).populate("chat").populate("sender", "name pic email").lean()
         message = {...message,content:originalText}
-        console.log("message:",message);
+        console.log("message after encryption:",message);
         res.json(message);
     } catch (error) {
         res.status(401).json(error.Message);

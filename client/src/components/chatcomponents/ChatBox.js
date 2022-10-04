@@ -73,9 +73,10 @@ const ChatBox = () => {
             const message = { content: newMessage, chatId: selectedchat.chat._id }
             const { data } = await axios.post("/api/messages/sendmessage",
                 message, { withCredentials: true, credentials: "include" })
+            console.log("send message data:",data)
             setNewMessage("");
-            socket.emit("sendMessage", data)
             setFetchedMessages([...fetchedmessages, data])
+            socket.emit("sendMessage", data)
             setFetchAgain(true)
             scrolltobottom()
         } catch (error) {
