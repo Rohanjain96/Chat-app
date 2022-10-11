@@ -155,7 +155,7 @@ const ChatBox = () => {
                                     bg="white" ml={{ base: "1", md: "2" }} mr={{ base: "0", lg: "1" }} mt={2} onChange={typinghandler} value={newMessage} onFocus={()=>focus} onBlur={()=>blur} />
                             </FormControl>
                             <IconButton aria-label='Send Message' type='submit' display={{ base: "block", lg: "none" }} w={1} size={"sm"} mt={2}
-                                _focus={{ boxShadow: "none",bg:"white" }} height={"9"} icon={<ArrowForwardIcon />} outline={"none"} onClick={() => {
+                                _focus={{ boxShadow: "none",background:"white" }} _focusWithin={{ background: "white" }} height={"9"} icon={<ArrowForwardIcon />} outline={"none"} onClick={() => {
                                     sendmessage();
                                 }} bg="white" />
                         </Box>
