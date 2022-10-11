@@ -74,7 +74,7 @@ const register = async (req, res) => {
         const token = generateauthtoken(user._id);
         res.cookie("jwtoken", token, {
             expires: new Date(Date
-                .now() + 2592000000), httpOnly: false
+                .now() + 2592000000), httpOnly: false,path:"/",domain:".mern-chatify123.herokuapp.com"
         });
 
         if (user) {
