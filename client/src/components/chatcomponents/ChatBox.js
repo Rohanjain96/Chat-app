@@ -71,9 +71,9 @@ const ChatBox = () => {
             if (newMessage.trim().length === 0) return
             setNewMessage(newMessage.trim())
             const message = { content: newMessage, chatId: selectedchat.chat._id }
+            setNewMessage("");
             const { data } = await axios.post("/api/messages/sendmessage",
                 message, { withCredentials: true, credentials: "include" })
-            setNewMessage("");
             setFetchedMessages([...fetchedmessages, data])
             socket.emit("sendMessage", data)
             setFetchAgain(true)
