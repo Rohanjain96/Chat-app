@@ -39,7 +39,7 @@ const ChatProfileDrawer = () => {
     const leaveGroup = async () => {
         try {
             console.log("user:",user._id)
-            const { data } = await axios.patch("/api/chats/leaveGroup", { chatId: selectedchat.chat._id, userId: user._id }, { withCredentials: true, credentials: "include" });
+            const { data } = await axios.patch("/api/chats/leaveGroup", { chatId: selectedchat.chat._id, userId: user.user._id }, { withCredentials: true, credentials: "include" });
             if (data) {
                 setFetchAgain(true)
                 setSelectedChat({ type: "changechat", payload: null })
