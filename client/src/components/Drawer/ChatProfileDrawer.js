@@ -22,7 +22,7 @@ const ChatProfileDrawer = () => {
             const { data } = await axios.patch("/api/chats/renamegroup", { chatId: selectedchat.chat._id, chatName: newGroupname }, { withCredentials: true, credentials: "include" });
             setEditButton(false);
             setNewGroupName("");
-            setSelectedChat({ type: "changechat", payload: [...data] });
+            setSelectedChat({ type: "changechat", payload: {...data} });
         } catch (error) {
             toast({
                 title: error.message,
@@ -38,7 +38,7 @@ const ChatProfileDrawer = () => {
 
     const leaveGroup = async () => {
         try {
-            const { data } = await axios.patch("https://mern-chatify-app.herokuapp.com/api/chats/leaveGroup", { chatId: selectedchat.chat._id, userId: user._id }, { withCredentials: true, credentials: "include" });
+            const { data } = await axios.patch("/api/chats/leaveGroup", { chatId: selectedchat.chat._id, userId: user._id }, { withCredentials: true, credentials: "include" });
             if (data) {
                 setFetchAgain(true)
                 setSelectedChat({ type: "changechat", payload: null })
