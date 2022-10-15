@@ -18,6 +18,7 @@ const Mychats = () => {
   const [Chatloading,setChatLoading] = useState(true)
   const fetchchats = async () => {
     // const User = user.user
+    console.log("user data:",user);
     try {
       const { data } = await axios.post("/api/chats/fetchchats",{ withCredentials: true, credentials: "include" });
       if (data) {
