@@ -145,6 +145,7 @@ const removeFromGroup = async (req, res) => {
 
 const leaveGroup = async (req, res) => {
   const { chatId, userId } = req.body;
+  console.log("chatId", chatId,"userId", userId);
 
   const leaved = await Chat.findByIdAndUpdate(
     chatId,
