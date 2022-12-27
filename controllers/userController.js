@@ -74,7 +74,7 @@ const register = async (req, res) => {
         const token = generateauthtoken(user._id);
         res.cookie("jwtoken", token, {
             expires: new Date(Date
-                .now() + 2592000000), httpOnly: false,path:"/",domain:".railway.app""
+                .now() + 2592000000), httpOnly: false,path:"/",domain:".railway.app"
         });
 
         if (user) {
@@ -112,7 +112,7 @@ const checkcookie = async (req, res) => {
 
 }
 const removecookie = (req, res) => {
-    res.clearCookie('jwtoken',{path:"/",domain:".railway.app""})
+    res.clearCookie('jwtoken',{path:"/",domain:".railway.app"})
     res.status(200).json("cookie cleared")
 }
 
