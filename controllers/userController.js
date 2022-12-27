@@ -18,7 +18,7 @@ const login = async (req, res) => {
             res.cookie("jwtoken", token, {
                 expires: new Date(Date
                     .now() + 2592000000), httpOnly: false,
-                    path:"/",domain:".mern-chat-app.up.railway.app/"
+                    path:"/",domain:".railway.app"
             });
             res.json({
                 _id: user._id,
@@ -74,7 +74,7 @@ const register = async (req, res) => {
         const token = generateauthtoken(user._id);
         res.cookie("jwtoken", token, {
             expires: new Date(Date
-                .now() + 2592000000), httpOnly: false,path:"/",domain:".mern-chatify123.herokuapp.com"
+                .now() + 2592000000), httpOnly: false,path:"/",domain:".railway.app""
         });
 
         if (user) {
@@ -112,7 +112,7 @@ const checkcookie = async (req, res) => {
 
 }
 const removecookie = (req, res) => {
-    res.clearCookie('jwtoken',{path:"/",domain:".mern-chatify123.herokuapp.com"})
+    res.clearCookie('jwtoken',{path:"/",domain:".railway.app""})
     res.status(200).json("cookie cleared")
 }
 
