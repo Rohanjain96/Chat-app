@@ -18,7 +18,7 @@ const login = async (req, res) => {
             res.cookie("jwtoken", token, {
                 expires: new Date(Date
                     .now() + 2592000000), httpOnly: false,
-                    path:"/",domain:".mern-chatify123.herokuapp.com"
+                    path:"/",domain:".mern-chat-app.up.railway.app/"
             });
             res.json({
                 _id: user._id,
