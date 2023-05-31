@@ -6,8 +6,6 @@ const protect = async (req, res, next) => {
   let token = req.cookies.jwtoken
 
   if (token) {
-
-
       //decodes token id
       const decoded = jwt.verify(token,process.env.Secret_key);
       req.user = await User.findById(decoded.userId).select("-password");
@@ -20,6 +18,7 @@ const protect = async (req, res, next) => {
       throw new Error("Not authorized, no token");
     }
   } catch (error) {
+    console.log(error.message)
     res.status(401).json(error.message);
   }
 };
