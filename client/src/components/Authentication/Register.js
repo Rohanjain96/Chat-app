@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Chatstate } from '../../context/ChatProvider';
 import Cookies from 'js-cookie';
+import { url } from '../../constants/url';
 
 const Register = () => {
     const [phonenumber, setPhonenumber] = useState("");
@@ -21,7 +22,7 @@ const Register = () => {
         e.preventDefault();
         if (password === confirmpassword) {
             try {
-                const { data } = await axios.post("/api/users/register", {
+                const { data } = await axios.post(`${url}/api/users/register`, {
                     name, email, password, phonenumber, picture:picture
                 }, { withCredentials: true, credentials: "include" });
                 setNotMatch(false)

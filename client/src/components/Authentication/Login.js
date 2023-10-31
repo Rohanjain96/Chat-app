@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Heading, useToast } from '@chakra-ui/react'
 import { Chatstate } from '../../context/ChatProvider';
 import "../../pages/homepage/homepage.css"
+import { url } from '../../constants/url';
 // login page
 const Login = () => {
     const [phonenumber, setPhonenumber] = useState("");
@@ -14,7 +15,7 @@ const Login = () => {
     const login = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post("/api/users/login", {
+            const { data } = await axios.post(`${url}/api/users/login`, {
                 phonenumber, password
             }, { withCredentials: true, credentials: "include" });
             setPhonenumber("");

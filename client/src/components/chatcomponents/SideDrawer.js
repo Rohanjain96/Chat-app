@@ -4,6 +4,7 @@ import { Avatar, Box, Button, Drawer, DrawerBody, DrawerContent, DrawerOverlay, 
 import axios from 'axios';
 import React, { useState } from 'react'
 import { BsFillChatLeftFill } from 'react-icons/bs';
+import { url } from '../../constants/url';
 import { Chatstate } from '../../context/ChatProvider';
 
 const SideDrawer = () => {
@@ -16,7 +17,7 @@ const SideDrawer = () => {
     const search = async (e) => {
         e.preventDefault();
         try {
-            const users = await axios.get(`/api/users/allusers?search=${Search}`,{ withCredentials: true, credentials: "include" })
+            const users = await axios.get(`${url}/api/users/allusers?search=${Search}`,{ withCredentials: true, credentials: "include" })
             setSearchedUsers(users.data);
         } catch (error) {
             toast({
@@ -32,7 +33,7 @@ const SideDrawer = () => {
 
     const createchat = async (userId,pic) => {
         try {
-            const { data } = await axios.post("/api/chats/", { userId ,pic}, { withCredentials: true, credentials: "include" });
+            const { data } = await axios.post(`${url}/api/chats/`, { userId ,pic}, { withCredentials: true, credentials: "include" });
             if (!chats.chats.find((c) => {
                 return c._id === data._id
             }))

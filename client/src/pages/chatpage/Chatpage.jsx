@@ -7,6 +7,7 @@ import { Chatstate } from "../../context/ChatProvider"
 import socket from "../../context/socket";
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { url } from "../../constants/url"
 
 
 const Chatpage = () => {
@@ -17,7 +18,7 @@ const toast = useToast()
 const checkcookie = async () => {
   try
   {
-      const {data} = await axios.get("/api/users/checkcookie" ,{ withCredentials: true, credentials: "include" });
+      const {data} = await axios.get(`${url}/api/users/checkcookie`,{ withCredentials: true, credentials: "include" });
       if (data) {
         setUser({type:"changeuser", payload: data});
       }

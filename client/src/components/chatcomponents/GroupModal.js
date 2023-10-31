@@ -2,6 +2,7 @@ import { SearchIcon, SmallCloseIcon } from '@chakra-ui/icons'
 import { Avatar, Box, Button,  Flex,  FormControl,  Heading,  IconButton,  Input,  MenuItem,  Modal,  ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Text, useDisclosure, useToast } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useState } from 'react'
+import { url } from '../../constants/url'
 import { Chatstate } from '../../context/ChatProvider'
 
 const GroupModal = () => {
@@ -16,7 +17,7 @@ const GroupModal = () => {
 
     const search = async (e) => {
         try {
-            const users = await axios.get(`/api/users/allusers?search=${Search}`, { withCredentials: true, credentials: "include" })
+            const users = await axios.get(`${url}/api/users/allusers?search=${Search}`, { withCredentials: true, credentials: "include" })
             setSearchedUsers(users.data);
         } catch (error) {
             toast({
@@ -37,7 +38,7 @@ const GroupModal = () => {
                 groupname:Groupname
             }
 
-            const { data } = await axios.post("/api/chats/creategroup", groupdata , { withCredentials: true, credentials: "include" });
+            const { data } = await axios.post(`${url}/api/chats/creategroup`, groupdata , { withCredentials: true, credentials: "include" });
             if (!chats.chats.find((c) => {
                 return c._id === data._id
             }))

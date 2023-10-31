@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import GroupModal from './GroupModal.js';
 import socket from '../../context/socket.js';
 import Skeleton from './Skeleton.js';
+import { url } from '../../constants/url.js';
 
 const Mychats = () => {
 
@@ -18,15 +19,15 @@ const Mychats = () => {
   const [Chatloading,setChatLoading] = useState(true)
   const fetchchats = async () => {
     // const User = user.user
-    console.log("user data:",user);
     try {
-      const { data } = await axios.post("/api/chats/fetchchats",{ withCredentials: true, credentials: "include" });
+      const { data } = await axios.get(`${url}/api/chats/fetchchats`,{ withCredentials: true, credentials: "include" });
       if (data) {
         setChats({ type: "changechats", payload: [...data] });
       }
       setFetchAgain(false)
       setChatLoading(false)
-    } catch (error) {
+    } 
+    catch (error) {
       toast({
         title: error.message,
         description: error.message,
@@ -42,7 +43,7 @@ const Mychats = () => {
   }, [fetchagain]);
 
   const clearCookie = () => {
-    axios.delete("/api/users/removecookie",{withCredentials: true, credentials: "include" })
+    axios.delete(`${url}/api/users/removecookie`,{withCredentials: true, credentials: "include" })
     .then(() => navigate("/", { replace: true }))
     .catch ((error) => {
       toast({
@@ -57,8 +58,6 @@ const Mychats = () => {
   const capatilize = (name) => {
     return name.charAt(0).toUpperCase() + name.slice(1)
   }
-
-
 
   useEffect(() => {
     socket.off("recievedMessage").on("recievedMessage", (message) => {
@@ -108,7 +107,7 @@ const Mychats = () => {
                   color={selectedchat.chat === chat ? "white" : "black"}>
                   <Wrap >
                     <WrapItem>
-                      <Avatar size={"md"} ml={2} name={chat.name} src={chat.pic} />
+                      <Avatar size={"md"} ml={2} name={chat.name} src={chat.chatName === "sender" ?user.user._id === chat.users[0]._id? chat.users[1].pic: chat.users[0].pic: chat.pic} />
                     </WrapItem>
                   </Wrap>
                   <Box display={"flex"} flexDirection="column" ml={2} justifyContent={"center"} w={"80%"} >

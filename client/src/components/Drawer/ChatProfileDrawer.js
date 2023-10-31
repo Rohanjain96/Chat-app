@@ -6,6 +6,7 @@ import './profiledrawer.css'
 import { ArrowBackIcon, CheckIcon, EditIcon } from '@chakra-ui/icons';
 import axios from 'axios';
 import AddremoveGroupModal from '../chatcomponents/AddremoveGroupModal';
+import { url } from '../../constants/url';
 const capatilize = (name) => {
     return name.charAt(0).toUpperCase() + name.slice(1)
 }
@@ -19,7 +20,7 @@ const ChatProfileDrawer = () => {
     const toast = useToast()
     const handleGroupname = async () => {
         try {
-            const { data } = await axios.patch("/api/chats/renamegroup", { chatId: selectedchat.chat._id, chatName: newGroupname }, { withCredentials: true, credentials: "include" });
+            const { data } = await axios.patch(`${url}/api/chats/renamegroup`, { chatId: selectedchat.chat._id, chatName: newGroupname }, { withCredentials: true, credentials: "include" });
             setEditButton(false);
             setNewGroupName("");
             setSelectedChat({ type: "changechat", payload: {...data} });
@@ -39,7 +40,7 @@ const ChatProfileDrawer = () => {
     const leaveGroup = async () => {
         try {
             console.log("user:",user._id)
-            const { data } = await axios.patch("/api/chats/leaveGroup", { chatId: selectedchat.chat._id, userId: user.user._id }, { withCredentials: true, credentials: "include" });
+            const { data } = await axios.patch(`${url}/api/chats/leaveGroup`, { chatId: selectedchat.chat._id, userId: user.user._id }, { withCredentials: true, credentials: "include" });
             if (data) {
                 setFetchAgain(true)
                 setSelectedChat({ type: "changechat", payload: null })

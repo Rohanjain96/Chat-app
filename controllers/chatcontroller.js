@@ -1,11 +1,14 @@
 const Chat = require("../models/chatModel");
 const User = require("../models/userModel");
 const CryptoJS = require("crypto-js")
+
 const accessChat = async (req, res) => {
   const { userId, pic } = req.body;
+
   if (!userId) {
     return res.status(400)
   }
+
   var isChat = await Chat.find({
     isGroupChat: false,
     $and: [
@@ -13,12 +16,15 @@ const accessChat = async (req, res) => {
       { users: { $elemMatch: { $eq: userId } } }
     ]
   }).populate("users", "-password").populate("latestMessage");
+
   isChat = await User.populate(isChat, {
     path: "latestMessage.sender",
     select: "name pic email phonenumber"
   });
+
   if (isChat.length > 0)
     res.json(isChat[0]);
+
   else {
     var chatData = {
       chatName: "sender",
@@ -26,8 +32,8 @@ const accessChat = async (req, res) => {
       users: [req.user._id, userId],
       pic: pic
     };
+    
     try {
-
       const createdChat = await Chat.create(chatData);
       const fullchat = await Chat.findOne({ _id: createdChat._id }).populate("users", "-password");
       res.status(200).json(fullchat);
