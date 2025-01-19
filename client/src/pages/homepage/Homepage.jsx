@@ -6,6 +6,7 @@ import Register from '../../components/Authentication/Register';
 import { Box, Center, Heading, Spinner, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { Chatstate } from "../../context/ChatProvider";
+import { url } from "../../constants/url";
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -15,9 +16,9 @@ const Homepage = () => {
 
   const checkcookie = async () => {
     try {
-      let { data } = await axios.get("/api/users/checkcookie", { withCredentials: true, credentials: "include" });
-      console.log("Data:",data);
+      let { data } = await axios.get(`${url}/api/users/checkcookie`, { withCredentials: true, credentials: "include" });
 
+      console.log(data)
       if (data) {
         setLoading(false)
         navigate("/chats")

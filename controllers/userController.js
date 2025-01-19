@@ -2,8 +2,10 @@ const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const { generateauthtoken } = require("../config/generateAuthtoken.js");
+
 const login = async (req, res) => {
     try {
+        let userPassword
         const { phonenumber, password } = req.body;
         const user = await User.findOne({ phonenumber });
         if (user) {
@@ -12,13 +14,13 @@ const login = async (req, res) => {
         else {
             throw new Error("Invalid Credentials");
         }
+
         const match = await bcrypt.compare(password, userPassword)
         if (user && match) {
             const token = generateauthtoken(user._id);
             res.cookie("jwtoken", token, {
                 expires: new Date(Date
-                    .now() + 2592000000), httpOnly: false,
-                    path:"/",domain:".railway.app"
+                    .now() + 2592000000), httpOnly: true
             });
             res.json({
                 _id: user._id,
@@ -34,7 +36,6 @@ const login = async (req, res) => {
     } catch (error) {
         res.status(403).json(error.message);
     }
-
 }
 
 const getAllUser = async (req, res) => {
@@ -66,15 +67,15 @@ const register = async (req, res) => {
             throw new Error("User already exists");
         }
 
-        if(picture!=="")  
-        user = await User.create({ name, email, password, phonenumber, pic: picture });
+        if (picture !== "")
+            user = await User.create({ name, email, password, phonenumber, pic: picture });
         else
-        user = await User.create({ name, email, password, phonenumber });
+            user = await User.create({ name, email, password, phonenumber });
 
         const token = generateauthtoken(user._id);
         res.cookie("jwtoken", token, {
             expires: new Date(Date
-                .now() + 2592000000), httpOnly: false,path:"/",domain:".railway.app"
+                .now() + 2592000000), httpOnly: false
         });
 
         if (user) {
@@ -86,7 +87,7 @@ const register = async (req, res) => {
                     email: user.email,
                     isadmin: user.isadmin,
                     pic: user.picture,
-                    token:token
+                    token: token
                 }
             )
         }
@@ -95,26 +96,24 @@ const register = async (req, res) => {
     } catch (error) {
         res.json(error.message)
     }
-
 }
-
 
 const checkcookie = async (req, res) => {
     let token = req.cookies.jwtoken;
-    if (token !== undefined){
-    const decoded = jwt.verify(token, process.env.Secret_key);
-    data = await User.findById(decoded.userId).select("-password");
-    res.json(data);
+    
+    if (token !== undefined) {
+        const decoded = jwt.verify(token, process.env.Secret_key);
+        data = await User.findById(decoded.userId).select("-password");
+        res.json(data);
     }
 
     else res.status(200).json();
-
-
 }
+
 const removecookie = (req, res) => {
-    res.clearCookie('jwtoken',{path:"/",domain:".railway.app"})
+    res.clearCookie('jwtoken')
     res.status(200).json("cookie cleared")
 }
 
 
-module.exports = { login, getAllUser,register,checkcookie,removecookie}
+module.exports = { login, getAllUser, register, checkcookie, removecookie }

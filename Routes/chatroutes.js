@@ -5,12 +5,12 @@ const router = express.Router();
 
 router.post("/",protect, accessChat);
 
-router.post("/fetchchats",protect, fetchChats);
+router.get("/fetchchats",protect, fetchChats);
 
 router.post("/creategroup",protect, createGroup);
 
 router.patch("/renamegroup", renameGroup );
-  
+
 router.patch( "/removeFromGroup", removeFromGroup);
 
 router.patch( "/leaveGroup", leaveGroup);

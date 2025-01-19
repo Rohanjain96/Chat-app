@@ -4,6 +4,7 @@ const { protect } = require("../Middleware/Autheticate");
 const router = express.Router();
 
 router.get("/:chatId", getMessages);
+
 router.post("/sendmessage",protect, sendMessage);
 
 

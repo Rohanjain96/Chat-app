@@ -1,6 +1,6 @@
 const express = require("express");
-const cors = require("cors");
 const cookieParser = require("cookie-parser")
+const cors = require("cors");
 const dotenv = require("dotenv")
 const path = require("path");
 dotenv.config(".env")
@@ -10,21 +10,20 @@ const messagerouter = require("./Routes/messageroutes")
 const chatrouter = require("./Routes/chatroutes")
 
 const app = express();
-const corsoptions = { credentials: true};
+const corsoptions = { origin: "http://localhost:3000", credentials: true };
 const PORT = process.env.PORT || 5000
+app.use(cookieParser())
 app.use(cors(corsoptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
-app.use(cookieParser())
 app.use("/api/users", userrouter);
 app.use("/api/chats", chatrouter);
 app.use("/api/messages", messagerouter);
 
-if(process.env.NODE_ENV === 'production')
-{
+if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
   app.get("*", function (req, res) {
-    res.sendFile(path.resolve(__dirname , "client/build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "client/build", "index.html"));
   });
 }
 connection();
@@ -32,7 +31,8 @@ connection();
 const server = app.listen(PORT, () => { console.log(`listening on port:${PORT}`); })
 const io = require("socket.io")(server, {
   cors: {
-    origin:"https://mern-chat-app.up.railway.app/"
+    // origin:"https://mern-chat-app.up.railway.app/"
+    origin: "http://localhost:3000"
   }
 })
 
@@ -42,8 +42,6 @@ io.on("connection", (socket) => {
   })
 
   socket.on("joinchat", (chatId) => {
-    console.log("----------------------------------------------------------------");
-    console.log("join chat");
     socket.join(chatId)
   })
 
@@ -54,9 +52,7 @@ io.on("connection", (socket) => {
     });
   })
 
-  socket.off("setup", (userId) => {
-    console.log("USER DISCONNECTED");
+  socket.on("disconnect", (userId) => {
     socket.leave(userId);
   });
-
 })

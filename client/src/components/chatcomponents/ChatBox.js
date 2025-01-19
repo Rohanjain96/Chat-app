@@ -6,6 +6,7 @@ import { Chatstate } from '../../context/ChatProvider'
 import ChatProfileDrawer from '../Drawer/ChatProfileDrawer'
 import { getSenderName } from './chatLogic'
 import socket from '../../context/socket'
+import { url } from '../../constants/url'
 
 const ChatBox = () => {
     const selectedchatcompare = useRef(null);
@@ -18,7 +19,7 @@ const ChatBox = () => {
     const fetchmessage = async () => {
         try {
             if (selectedchat.chat === null) return;
-            const { data } = await axios.get(`/api/messages/${selectedchat.chat._id}`,
+            const { data } = await axios.get(`${url}/api/messages/${selectedchat.chat._id}`,
                 { withCredentials: true, credentials: "include" })
             setFetchedMessages(data);
             setLoading(false)
@@ -72,7 +73,7 @@ const ChatBox = () => {
             setNewMessage(newMessage.trim())
             const message = { content: newMessage, chatId: selectedchat.chat._id }
             setNewMessage("");
-            const { data } = await axios.post("/api/messages/sendmessage",
+            const { data } = await axios.post(`${url}/api/messages/sendmessage`,
                 message, { withCredentials: true, credentials: "include" })
             setFetchedMessages([...fetchedmessages, data])
             socket.emit("sendMessage", data)
@@ -123,14 +124,14 @@ const ChatBox = () => {
                                 </Text>
                             </Box>
                         </Box>
-                        <Box w={"100%"} height={{ base: `${height}`, lg: "86vh" }} mb={1} zIndex={2} position="relative">
+                        <Box w={"100%"} display='flex' flexDirection={'column'} height={{ base: "90vh", lg: "86vh" }} mb={1} zIndex={2} position="relative">
                             {
                                 loading ?
                                     <Stack display={"flex"} justifyContent={"center"} alignItems={"center"} width={"100%"} h={"100%"} bg="whitealpha.100" mb={2}>
                                         <Spinner size='xl' />
                                     </Stack>
                                     :
-                                    <Box width={"100%"} h={{ base: "97%", lg: "98%" }} bg="whitealpha.100" mb={2} overflowY={"auto"} p={6} id="Chatbox">
+                                    <Box width={"100%"} display='flex' flexDirection={'column'} flex={1} bg="whitealpha.100" mb={2} overflowY={"auto"} p={6} id="Chatbox">
                                         {
                                             fetchedmessages !== undefined && fetchedmessages.map((message, index) => {
                                                 return (
@@ -149,7 +150,7 @@ const ChatBox = () => {
                                         }
                                     </Box>
                             }
-                        <Box display={"flex"} w={"99%"} h={"40px"} alignItems={"center"} position="absolute" bottom={{ base: "2px", lg: "6px" }}>
+                        <Box display={"flex"} w={"99%"} h={"40px"} alignItems={"center"} alignSelf={'flex-end'}>
                             <FormControl display={"flex"} onKeyDown={typinghandler} w={{ base: "95%", lg: "99%" }}>
                                 <Input w={{ base: "100%", lg: "100%" }} autoComplete="disabled" fontSize={"sm"} h={"9"} placeholder=''
                                     bg="white" ml={{ base: "1", md: "2" }} mr={{ base: "0", lg: "1" }} mt={2} onChange={typinghandler} value={newMessage} onFocus={()=>focus} onBlur={()=>blur} />

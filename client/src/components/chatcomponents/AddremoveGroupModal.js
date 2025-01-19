@@ -2,6 +2,7 @@ import { SearchIcon, SmallCloseIcon } from '@chakra-ui/icons'
 import { Avatar, Box, Button, Flex, FormControl, Heading, IconButton, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Text, useDisclosure, useToast } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { url } from '../../constants/url'
 import { Chatstate } from '../../context/ChatProvider'
 
 const AddremoveGroupModal = (props) => {
@@ -24,7 +25,7 @@ const AddremoveGroupModal = (props) => {
     
     const search = async (e) => {
         try {
-            const users = await axios.get(`/api/users/allusers?search=${Search}`, { withCredentials: true, credentials: "include" })
+            const users = await axios.get(`${url}/api/users/allusers?search=${Search}`, { withCredentials: true, credentials: "include" })
             setSearchedUsers(users.data);
         } catch (error) {
             toast({
@@ -55,7 +56,7 @@ const AddremoveGroupModal = (props) => {
     
     const updatechat = async () => { 
             try {
-                const { data } = await axios.patch("/api/chats/addToGroup", {chatId:selectedchat.chat._id, users:JSON.stringify(addUsers.map((user)=>user._id))}, { withCredentials: true, credentials: "include" });
+                const { data } = await axios.patch(`${url}/api/chats/addToGroup`, {chatId:selectedchat.chat._id, users:JSON.stringify(addUsers.map((user)=>user._id))}, { withCredentials: true, credentials: "include" });
                 setSelectedChat({ type: "changechat", payload: data });
                 setSearch("");
                 setAddUsers([])
@@ -73,7 +74,7 @@ const AddremoveGroupModal = (props) => {
     const removeuser = async(user) => {
         try {
 
-            const { data } = await axios.patch("/api/chats/removeFromGroup",{ chatId:selectedchat.chat._id, userId:user._id }, { withCredentials: true, credentials: "include" });
+            const { data } = await axios.patch(`${url}/api/chats/removeFromGroup`,{ chatId:selectedchat.chat._id, userId:user._id }, { withCredentials: true, credentials: "include" });
             if(data === "undefined" || data === null)
             {
                 selectedUsers.splice(selectedUsers.indexOf(user), 1);
