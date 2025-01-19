@@ -10,7 +10,7 @@ const messagerouter = require("./Routes/messageroutes")
 const chatrouter = require("./Routes/chatroutes")
 
 const app = express();
-const corsoptions = { origin: "http://localhost:3000", credentials: true };
+const corsoptions = { origin: "https://chat-app-lpen.onrender.com", credentials: true };
 const PORT = process.env.PORT || 5000
 app.use(cookieParser())
 app.use(cors(corsoptions));
@@ -32,7 +32,7 @@ const server = app.listen(PORT, () => { console.log(`listening on port:${PORT}`)
 const io = require("socket.io")(server, {
   cors: {
     // origin:"https://mern-chat-app.up.railway.app/"
-    origin: "http://localhost:3000"
+    origin: "https://chat-app-lpen.onrender.com"
   }
 })
 
