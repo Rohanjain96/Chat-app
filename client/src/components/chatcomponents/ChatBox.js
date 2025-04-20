@@ -107,12 +107,12 @@ const ChatBox = () => {
         <>
             {
                 selectedchat.chat ?
-                    <Box d={{ base: selectedchat ? "flex" : "none", md: "flex" }} flexDirection="column"
-                        width={{ base: "100%", md: "60%" }} height={{base:"100%",lg: "100%" }} position={"relative"} overflow={"hidden"}
+                    <Box display={{ base: selectedchat ? "flex" : "none", md: "flex" }} flexDirection="column"
+                        width={{ base: "100%", md: "60%" }} height={{ base: "100%", lg: "100%" }} position={"relative"} overflow={"hidden"}
                         bg={"gray.200"}>
                         <Box width={"100%"} minHeight={{ base: "7vh", lg: "8vh" }} bg={"gray.100"} display="flex" alignItems={"center"}
                             pt={2} pb={2} top="0" zIndex={"5"} position="sticky">
-                            <IconButton icon={<ArrowBackIcon />} h={9} p="0" d={{ base: "flex", lg: "none" }} size={"md"}
+                            <IconButton icon={<ArrowBackIcon />} h={9} p="0" display={{ base: "flex", lg: "none" }} size={"md"}
                                 outline={"none"}
                                 onClick={() => setSelectedChat({ type: "changechat", payload: null })} />
                             <Box display={"flex"} alignItems={"center"} ml={1} h={"100%"}>
@@ -150,19 +150,19 @@ const ChatBox = () => {
                                         }
                                     </Box>
                             }
-                        <Box display={"flex"} w={"99%"} h={"40px"} alignItems={"center"} alignSelf={'flex-end'}>
-                            <FormControl display={"flex"} onKeyDown={typinghandler} w={{ base: "95%", lg: "99%" }}>
-                                <Input w={{ base: "100%", lg: "100%" }} autoComplete="disabled" fontSize={"sm"} h={"9"} placeholder=''
-                                    bg="white" ml={{ base: "1", md: "2" }} mr={{ base: "0", lg: "1" }} mt={2} onChange={typinghandler} value={newMessage} onFocus={()=>focus} onBlur={()=>blur} />
-                            </FormControl>
-                            <IconButton aria-label='Send Message' type='submit' display={{ base: "block", lg: "none" }} w={1} size={"sm"} mt={2}
-                                _focus={{ boxShadow: "none",background:"white" }} _focusWithin={{ background: "white" }} height={"9"} icon={<ArrowForwardIcon />} outline={"none"} onClick={() => {
-                                    sendmessage();
-                                }} bg="white" />
+                            <Box display={"flex"} w={"99%"} h={"40px"} alignItems={"center"} alignSelf={'flex-end'}>
+                                <FormControl display={"flex"} onKeyDown={typinghandler} w={{ base: "95%", lg: "99%" }}>
+                                    <Input w={{ base: "100%", lg: "100%" }} autoComplete="disabled" fontSize={"sm"} h={"9"} placeholder=''
+                                        bg="white" ml={{ base: "1", md: "2" }} mr={{ base: "0", lg: "1" }} mt={2} onChange={typinghandler} value={newMessage} onFocus={() => focus} onBlur={() => blur} />
+                                </FormControl>
+                                <IconButton aria-label='Send Message' type='submit' display={{ base: "block", lg: "none" }} w={1} size={"sm"} mt={2}
+                                    _focus={{ boxShadow: "none", background: "white" }} _focusWithin={{ background: "white" }} height={"9"} icon={<ArrowForwardIcon />} outline={"none"} onClick={() => {
+                                        sendmessage();
+                                    }} bg="white" />
+                            </Box>
                         </Box>
-                     </Box>
                     </Box>
-                    : <Box d={{ base: selectedchat.id ? "flex" : "none", md: "flex" }} flexDirection="column" width={{ base: "100%", md: "60%" }} minHeight={"100%"} bg={"gray.200"} justifyContent={"center"} alignItems={"center"} p={2}>
+                    : <Box display={{ base: selectedchat.id ? "flex" : "none", md: "flex" }} flexDirection="column" width={{ base: "100%", md: "60%" }} minHeight={"100%"} bg={"gray.200"} justifyContent={"center"} alignItems={"center"} p={2}>
                         <Text fontSize={{ md: "2xl", lg: "3xl" }} fontWeight={"bold"} color={"GrayText"}>Select any chat to start chating</Text>
                     </Box>
             }
